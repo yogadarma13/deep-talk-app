@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --accent-color: #00796b;
+  --foreground-color: #0F1419;
+  --background-color: white;
+  --gray-dark-color: #66757F;
+  --gray-light-color: #edeff1;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--foreground-color);
+  background-color: var(--background-color);
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.register-page__main {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-direction: column;
+  padding: 64px;
+}

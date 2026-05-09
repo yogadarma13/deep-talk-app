@@ -7,5 +7,6 @@ import daStyle from 'eslint-config-dicodingacademy';
 export default defineConfig([
   { files: ['**/*.{js,mjs,cjs,jsx}'], plugins: { js }, extends: ['js/recommended'], languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginReact.configs.flat.recommended,
-  daStyle
+  daStyle,
+  { rules: { 'react/prop-types': 'off' } },
 ]);
