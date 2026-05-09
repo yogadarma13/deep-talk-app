@@ -23,7 +23,7 @@ body {
   margin: 0 auto;
 }
 
-.register-page__main {
+.register-page__main, .login-page__main {
   display: flex;
   gap: 16px;
   justify-content: center;
