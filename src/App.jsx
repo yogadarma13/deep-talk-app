@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import { useSelector } from 'react-redux';
 import HomePage from './pages/HomePage';
+import AddThreadPage from './pages/AddThreadPage';
 
 function App() {
   const { authUser = null } = useSelector((states) => states);
@@ -24,7 +25,10 @@ function App() {
 
   return (
     <div className="app-container">
-      <HomePage />
+      <Routes>
+        <Route path='/' element={<HomePage />}/>
+        <Route path='/addThread' element={<AddThreadPage />}/>
+      </Routes>
     </div>
   );
 }

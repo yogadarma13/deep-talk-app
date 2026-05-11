@@ -19,14 +19,21 @@ body {
 }
 
 .app-container {
+  display: flex;
   max-width: 800px;
   margin: 0 auto;
+  flex-direction: column;
+  padding-top: 24px;
 }
 
-.register-page__main, .login-page__main {
+.register-page__main, .login-page__main, .add-thread-page__main {
   display: flex;
   gap: 16px;
   justify-content: center;
   flex-direction: column;
   padding: 64px;
+}
+
+.thread-list-item {
+  margin: 16px 0;
 }
