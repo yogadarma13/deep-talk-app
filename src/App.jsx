@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import { useSelector } from 'react-redux';
 import HomePage from './pages/HomePage';
 import AddThreadPage from './pages/AddThreadPage';
+import DetailPage from './pages/DetailPage';
 
 function App() {
   const { authUser = null } = useSelector((states) => states);
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />}/>
         <Route path='/addThread' element={<AddThreadPage />}/>
+        <Route path='/threads/:id' element={<DetailPage />}/>
       </Routes>
     </div>
   );

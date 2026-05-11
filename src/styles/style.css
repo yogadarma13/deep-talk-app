@@ -37,3 +37,20 @@ body {
 .thread-list-item {
   margin: 16px 0;
 }
+
+.thread-comment__main {
+  margin-top: 24px;
+}
+
+.thread-comment-item {
+  margin: 8px 0;
+}
+
+.thread-item__body {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

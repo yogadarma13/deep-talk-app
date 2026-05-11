@@ -1,0 +1,38 @@
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { showFormattedDate } from '../utils';
+import CommentItem from '../components/CommentItem';
+import { asyncReceiveThreadDetail } from '../states/threadDetail/action';
+import { useParams } from 'react-router-dom';
+import parser from 'html-react-parser';
+
+function DetailPage() {
+  const { id } = useParams();
+  const { threadDetail = null } = useSelector((states) => states);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncReceiveThreadDetail(id));
+  }, [dispatch]);
+
+  if (!threadDetail) {
+    return null;
+  }
+
+  return (
+    <div>
+      <h1>Detail</h1>
+      <h3>{threadDetail.title}</h3>
+      <p>{`~ ${threadDetail.owner.name}`}</p>
+      <p>{threadDetail.category}</p>
+      <p>{showFormattedDate(threadDetail.createdAt)}</p>
+      <div>{parser(threadDetail.body)}</div>
+      <h4 className='thread-comment__main'>Comment</h4>
+      {threadDetail.comments.map((comment) => (
+        <CommentItem key={comment.id} name={comment.owner.name} {...comment} />
+      ))}
+    </div>
+  );
+}
+
+export default DetailPage;
