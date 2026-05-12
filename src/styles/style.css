@@ -54,3 +54,11 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.comment-input {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-direction: column;
+}

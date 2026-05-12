@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showFormattedDate } from '../utils';
 import CommentItem from '../components/CommentItem';
-import { asyncReceiveThreadDetail } from '../states/threadDetail/action';
+import { asyncAddNewComment, asyncReceiveThreadDetail } from '../states/threadDetail/action';
 import { useParams } from 'react-router-dom';
 import parser from 'html-react-parser';
+import CommentInput from '../components/CommentInput';
 
 function DetailPage() {
   const { id } = useParams();
@@ -19,6 +20,10 @@ function DetailPage() {
     return null;
   }
 
+  const onAddComment = (content) => {
+    dispatch(asyncAddNewComment({ id, content }));
+  };
+
   return (
     <div>
       <h1>Detail</h1>
@@ -31,6 +36,8 @@ function DetailPage() {
       {threadDetail.comments.map((comment) => (
         <CommentItem key={comment.id} name={comment.owner.name} {...comment} />
       ))}
+
+      <CommentInput handleAddComment={onAddComment} />
     </div>
   );
 }
