@@ -40,4 +40,4 @@ function asyncLoginUser({ email, password }) {
   };
 }
 
-export { ActionType, asyncRegisterUser, asyncLoginUser };
+export { ActionType, setAuthUserActionCreator, asyncRegisterUser, asyncLoginUser };
