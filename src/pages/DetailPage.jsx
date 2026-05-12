@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showFormattedDate } from '../utils';
 import CommentItem from '../components/CommentItem';
-import { asyncAddNewComment, asyncReceiveThreadDetail, asyncUpVoteThread } from '../states/threadDetail/action';
+import { asyncAddNewComment, asyncDownVoteThread, asyncReceiveThreadDetail, asyncUpVoteThread } from '../states/threadDetail/action';
 import { useParams } from 'react-router-dom';
 import parser from 'html-react-parser';
 import CommentInput from '../components/CommentInput';
@@ -28,6 +28,10 @@ function DetailPage() {
     dispatch(asyncUpVoteThread(id));
   };
 
+  const downVoteThread = () => {
+    dispatch(asyncDownVoteThread(id));
+  };
+
   return (
     <div>
       <h1>Detail</h1>
@@ -36,8 +40,9 @@ function DetailPage() {
       <p>{threadDetail.category}</p>
       <p>{showFormattedDate(threadDetail.createdAt)}</p>
       <div>{parser(threadDetail.body)}</div>
-      <div>
+      <div className='thread-vote__main'>
         <button onClick={upVoteThread}>Like: {threadDetail.upVotesBy.length}</button>
+        <button onClick={downVoteThread}>Unlike: {threadDetail.downVotesBy.length}</button>
       </div>
 
       <h4 className='thread-comment__main'>Comment</h4>

@@ -62,3 +62,8 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+
+.thread-vote__main {
+  display: flex;
+  gap: 16px;
+}

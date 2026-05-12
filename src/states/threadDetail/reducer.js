@@ -8,6 +8,8 @@ function threadDetailReducer(threadDetail = null, action = {}) {
     return { ...threadDetail, comments: [action.payload.comment, ...threadDetail.comments] };
   case ActionType.UP_VOTE_THREAD:
     return { ...threadDetail, upVotesBy: [...threadDetail.upVotesBy, action.payload.userId], downVotesBy: threadDetail.downVotesBy.filter((id) => id !== action.payload.userId) };
+  case ActionType.DOWN_VOTE_THREAD:
+    return { ...threadDetail, downVotesBy: [...threadDetail.downVotesBy, action.payload.userId], upVotesBy: threadDetail.upVotesBy.filter((id) => id !== action.payload.userId) };
   default:
     return threadDetail;
   }

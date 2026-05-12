@@ -210,7 +210,29 @@ const api = (() => {
     return vote;
   }
 
-  return { putAccessToken, register, login, getOwnProfile, getAllThreads, getAllUsers, addNewThread, getThreadDetail, addNewComment, upVoteThread };
+  async function downVoteThread(id) {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/down-vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const responseJson = await response.json();
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const {
+      data: { vote },
+    } = responseJson;
+
+    return vote;
+  }
+
+  return { putAccessToken, register, login, getOwnProfile, getAllThreads, getAllUsers, addNewThread, getThreadDetail, addNewComment, upVoteThread, downVoteThread };
 })();
 
 export default api;

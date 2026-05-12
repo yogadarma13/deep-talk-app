@@ -4,6 +4,7 @@ const ActionType = {
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
   ADD_NEW_COMMENT: 'ADD_NEW_COMMENT',
   UP_VOTE_THREAD: 'UP_VOTE_THREAD',
+  DOWN_VOTE_THREAD: 'DOWN_VOTE_THREAD',
 };
 
 function receiveThreadDetailActionCreator(threadDetail) {
@@ -27,6 +28,15 @@ function addNewCommentActionCreator(comment) {
 function upVoteThreadActionCreator(userId) {
   return {
     type: ActionType.UP_VOTE_THREAD,
+    payload: {
+      userId,
+    },
+  };
+}
+
+function downVoteThreadActionCreator(userId) {
+  return {
+    type: ActionType.DOWN_VOTE_THREAD,
     payload: {
       userId,
     },
@@ -70,4 +80,23 @@ function asyncUpVoteThread(id) {
   };
 }
 
-export { ActionType, asyncReceiveThreadDetail, asyncAddNewComment, asyncUpVoteThread };
+function asyncDownVoteThread(id) {
+  return async (dispatch, getState) => {
+    const { authUser } = getState();
+    dispatch(downVoteThreadActionCreator(authUser.id));
+
+    try {
+      await api.downVoteThread(id);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
+
+export {
+  ActionType,
+  asyncReceiveThreadDetail,
+  asyncAddNewComment,
+  asyncUpVoteThread,
+  asyncDownVoteThread
+};
