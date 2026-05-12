@@ -232,7 +232,29 @@ const api = (() => {
     return vote;
   }
 
-  return { putAccessToken, register, login, getOwnProfile, getAllThreads, getAllUsers, addNewThread, getThreadDetail, addNewComment, upVoteThread, downVoteThread };
+  async function clearVoteThread(id) {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/neutral-vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const responseJson = await response.json();
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const {
+      data: { vote },
+    } = responseJson;
+
+    return vote;
+  }
+
+  return { putAccessToken, register, login, getOwnProfile, getAllThreads, getAllUsers, addNewThread, getThreadDetail, addNewComment, upVoteThread, downVoteThread, clearVoteThread };
 })();
 
 export default api;

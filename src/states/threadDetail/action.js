@@ -5,6 +5,7 @@ const ActionType = {
   ADD_NEW_COMMENT: 'ADD_NEW_COMMENT',
   UP_VOTE_THREAD: 'UP_VOTE_THREAD',
   DOWN_VOTE_THREAD: 'DOWN_VOTE_THREAD',
+  CLEAR_VOTE_THREAD: 'CLEAR_VOTE_THREAD',
 };
 
 function receiveThreadDetailActionCreator(threadDetail) {
@@ -43,6 +44,15 @@ function downVoteThreadActionCreator(userId) {
   };
 }
 
+function clearVoteThreadActionCreator(userId) {
+  return {
+    type: ActionType.CLEAR_VOTE_THREAD,
+    payload: {
+      userId,
+    },
+  };
+}
+
 function asyncReceiveThreadDetail(id) {
   return async (dispatch) => {
     try {
@@ -69,12 +79,30 @@ function asyncAddNewComment(content) {
 
 function asyncUpVoteThread(id) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(upVoteThreadActionCreator(authUser.id));
+    const { authUser, threadDetail } = getState();
+    const isUserIdExistUpVote = threadDetail.upVotesBy.includes(authUser.id);
+    const isUserIdExistDownVote = threadDetail.downVotesBy.includes(authUser.id);
+
+    if (isUserIdExistUpVote) {
+      dispatch(clearVoteThreadActionCreator(authUser.id));
+    } else {
+      dispatch(upVoteThreadActionCreator(authUser.id));
+    }
 
     try {
-      await api.upVoteThread(id);
+      if (isUserIdExistUpVote) {
+        await api.clearVoteThread(id);
+      } else {
+        await api.upVoteThread(id);
+      }
     } catch (error) {
+      if (isUserIdExistUpVote) {
+        dispatch(upVoteThreadActionCreator(authUser.id));
+      } else if (isUserIdExistDownVote) {
+        dispatch(downVoteThreadActionCreator(authUser.id));
+      } else {
+        dispatch(clearVoteThreadActionCreator(authUser.id));
+      }
       alert(error.message);
     }
   };
@@ -82,12 +110,30 @@ function asyncUpVoteThread(id) {
 
 function asyncDownVoteThread(id) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(downVoteThreadActionCreator(authUser.id));
+    const { authUser, threadDetail } = getState();
+    const isUserIdExistDownVote = threadDetail.downVotesBy.includes(authUser.id);
+    const isUserIdExistUpVote = threadDetail.upVotesBy.includes(authUser.id);
+
+    if (isUserIdExistDownVote) {
+      dispatch(clearVoteThreadActionCreator(authUser.id));
+    } else {
+      dispatch(downVoteThreadActionCreator(authUser.id));
+    }
 
     try {
-      await api.downVoteThread(id);
+      if (isUserIdExistDownVote) {
+        await api.clearVoteThread(id);
+      } else {
+        await api.downVoteThread(id);
+      }
     } catch (error) {
+      if (isUserIdExistDownVote) {
+        dispatch(downVoteThreadActionCreator(authUser.id));
+      } else if (isUserIdExistUpVote) {
+        dispatch(upVoteThreadActionCreator(authUser.id));
+      } else {
+        dispatch(clearVoteThreadActionCreator(authUser.id));
+      }
       alert(error.message);
     }
   };
@@ -98,5 +144,5 @@ export {
   asyncReceiveThreadDetail,
   asyncAddNewComment,
   asyncUpVoteThread,
-  asyncDownVoteThread
+  asyncDownVoteThread,
 };
