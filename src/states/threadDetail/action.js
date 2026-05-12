@@ -24,11 +24,11 @@ function addNewCommentActionCreator(comment) {
   };
 }
 
-function upVoteThreadActionCreator(vote) {
+function upVoteThreadActionCreator(userId) {
   return {
     type: ActionType.UP_VOTE_THREAD,
     payload: {
-      vote,
+      userId,
     },
   };
 }
@@ -44,9 +44,11 @@ function asyncReceiveThreadDetail(id) {
   };
 }
 
-function asyncAddNewComment({ id, content }) {
-  return async (dispatch) => {
+function asyncAddNewComment(content) {
+  return async (dispatch, getState) => {
     try {
+      const { threadDetail } = getState();
+      const id = threadDetail.id;
       const comment = await api.addNewComment({ id, content });
       dispatch(addNewCommentActionCreator(comment));
     } catch (error) {
@@ -56,10 +58,12 @@ function asyncAddNewComment({ id, content }) {
 }
 
 function asyncUpVoteThread(id) {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const { authUser } = getState();
+    dispatch(upVoteThreadActionCreator(authUser.id));
+
     try {
-      const vote = await api.upVoteThread(id);
-      dispatch(upVoteThreadActionCreator(vote));
+      await api.upVoteThread(id);
     } catch (error) {
       alert(error.message);
     }

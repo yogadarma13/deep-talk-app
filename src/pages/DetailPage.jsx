@@ -21,7 +21,7 @@ function DetailPage() {
   }
 
   const onAddComment = (content) => {
-    dispatch(asyncAddNewComment({ id, content }));
+    dispatch(asyncAddNewComment(content));
   };
 
   const upVoteThread = () => {
