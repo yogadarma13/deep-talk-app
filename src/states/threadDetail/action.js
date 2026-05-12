@@ -3,6 +3,7 @@ import api from '../../utils/api';
 const ActionType = {
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
   ADD_NEW_COMMENT: 'ADD_NEW_COMMENT',
+  UP_VOTE_THREAD: 'UP_VOTE_THREAD',
 };
 
 function receiveThreadDetailActionCreator(threadDetail) {
@@ -19,6 +20,15 @@ function addNewCommentActionCreator(comment) {
     type: ActionType.ADD_NEW_COMMENT,
     payload: {
       comment,
+    },
+  };
+}
+
+function upVoteThreadActionCreator(vote) {
+  return {
+    type: ActionType.UP_VOTE_THREAD,
+    payload: {
+      vote,
     },
   };
 }
@@ -45,4 +55,15 @@ function asyncAddNewComment({ id, content }) {
   };
 }
 
-export { ActionType, asyncReceiveThreadDetail, asyncAddNewComment };
+function asyncUpVoteThread(id) {
+  return async (dispatch) => {
+    try {
+      const vote = await api.upVoteThread(id);
+      dispatch(upVoteThreadActionCreator(vote));
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
+
+export { ActionType, asyncReceiveThreadDetail, asyncAddNewComment, asyncUpVoteThread };

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showFormattedDate } from '../utils';
 import CommentItem from '../components/CommentItem';
-import { asyncAddNewComment, asyncReceiveThreadDetail } from '../states/threadDetail/action';
+import { asyncAddNewComment, asyncReceiveThreadDetail, asyncUpVoteThread } from '../states/threadDetail/action';
 import { useParams } from 'react-router-dom';
 import parser from 'html-react-parser';
 import CommentInput from '../components/CommentInput';
@@ -24,6 +24,10 @@ function DetailPage() {
     dispatch(asyncAddNewComment({ id, content }));
   };
 
+  const upVoteThread = () => {
+    dispatch(asyncUpVoteThread(id));
+  };
+
   return (
     <div>
       <h1>Detail</h1>
@@ -32,6 +36,10 @@ function DetailPage() {
       <p>{threadDetail.category}</p>
       <p>{showFormattedDate(threadDetail.createdAt)}</p>
       <div>{parser(threadDetail.body)}</div>
+      <div>
+        <button onClick={upVoteThread}>Like: {threadDetail.upVotesBy.length}</button>
+      </div>
+
       <h4 className='thread-comment__main'>Comment</h4>
       {threadDetail.comments.map((comment) => (
         <CommentItem key={comment.id} name={comment.owner.name} {...comment} />
