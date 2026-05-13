@@ -6,6 +6,7 @@ const ActionType = {
   UP_VOTE_THREAD: 'UP_VOTE_THREAD',
   DOWN_VOTE_THREAD: 'DOWN_VOTE_THREAD',
   CLEAR_VOTE_THREAD: 'CLEAR_VOTE_THREAD',
+  UP_VOTE_COMMENT: 'UP_VOTE_COMMENT',
 };
 
 function receiveThreadDetailActionCreator(threadDetail) {
@@ -53,6 +54,16 @@ function clearVoteThreadActionCreator(userId) {
   };
 }
 
+function upVoteCommentActionCreator(userId, commentId) {
+  return {
+    type: ActionType.UP_VOTE_COMMENT,
+    payload: {
+      userId,
+      commentId
+    },
+  };
+}
+
 function asyncReceiveThreadDetail(id) {
   return async (dispatch) => {
     try {
@@ -77,11 +88,11 @@ function asyncAddNewComment(content) {
   };
 }
 
-function asyncUpVoteThread(id) {
+function asyncUpVoteThread() {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
     const isUserIdExistUpVote = threadDetail.upVotesBy.includes(authUser.id);
-    const isUserIdExistDownVote = threadDetail.downVotesBy.includes(authUser.id);
+    const isUserIdExistDownVote = threadDetail.downVotesBy.includes(authUser.id,);
 
     if (isUserIdExistUpVote) {
       dispatch(clearVoteThreadActionCreator(authUser.id));
@@ -91,9 +102,9 @@ function asyncUpVoteThread(id) {
 
     try {
       if (isUserIdExistUpVote) {
-        await api.clearVoteThread(id);
+        await api.clearVoteThread(threadDetail.id);
       } else {
-        await api.upVoteThread(id);
+        await api.upVoteThread(threadDetail.id);
       }
     } catch (error) {
       if (isUserIdExistUpVote) {
@@ -108,10 +119,10 @@ function asyncUpVoteThread(id) {
   };
 }
 
-function asyncDownVoteThread(id) {
+function asyncDownVoteThread() {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
-    const isUserIdExistDownVote = threadDetail.downVotesBy.includes(authUser.id);
+    const isUserIdExistDownVote = threadDetail.downVotesBy.includes(authUser.id,);
     const isUserIdExistUpVote = threadDetail.upVotesBy.includes(authUser.id);
 
     if (isUserIdExistDownVote) {
@@ -122,9 +133,9 @@ function asyncDownVoteThread(id) {
 
     try {
       if (isUserIdExistDownVote) {
-        await api.clearVoteThread(id);
+        await api.clearVoteThread(threadDetail.id);
       } else {
-        await api.downVoteThread(id);
+        await api.downVoteThread(threadDetail.id);
       }
     } catch (error) {
       if (isUserIdExistDownVote) {
@@ -139,10 +150,24 @@ function asyncDownVoteThread(id) {
   };
 }
 
+function asyncUpVoteComment(commentId) {
+  return async (dispatch, getState) => {
+    const { authUser, threadDetail } = getState();
+    const threadId = threadDetail.id;
+    dispatch(upVoteCommentActionCreator(authUser.id, commentId));
+    try {
+      await api.upVoteComment({ threadId, commentId });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
+
 export {
   ActionType,
   asyncReceiveThreadDetail,
   asyncAddNewComment,
   asyncUpVoteThread,
   asyncDownVoteThread,
+  asyncUpVoteComment
 };

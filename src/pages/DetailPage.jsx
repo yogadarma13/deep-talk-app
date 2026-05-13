@@ -2,7 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showFormattedDate } from '../utils';
 import CommentItem from '../components/CommentItem';
-import { asyncAddNewComment, asyncDownVoteThread, asyncReceiveThreadDetail, asyncUpVoteThread } from '../states/threadDetail/action';
+import {
+  asyncAddNewComment,
+  asyncDownVoteThread,
+  asyncReceiveThreadDetail,
+  asyncUpVoteComment,
+  asyncUpVoteThread,
+} from '../states/threadDetail/action';
 import { useParams } from 'react-router-dom';
 import parser from 'html-react-parser';
 import CommentInput from '../components/CommentInput';
@@ -25,12 +31,18 @@ function DetailPage() {
   };
 
   const upVoteThread = () => {
-    dispatch(asyncUpVoteThread(id));
+    dispatch(asyncUpVoteThread());
   };
 
   const downVoteThread = () => {
-    dispatch(asyncDownVoteThread(id));
+    dispatch(asyncDownVoteThread());
   };
+
+  const upVoteComment = (commentId) => {
+    dispatch(asyncUpVoteComment(commentId));
+  };
+
+  const downVoteComment = (commentId) => {};
 
   return (
     <div>
@@ -41,13 +53,23 @@ function DetailPage() {
       <p>{showFormattedDate(threadDetail.createdAt)}</p>
       <div>{parser(threadDetail.body)}</div>
       <div className='thread-vote__main'>
-        <button onClick={upVoteThread}>Like: {threadDetail.upVotesBy.length}</button>
-        <button onClick={downVoteThread}>Unlike: {threadDetail.downVotesBy.length}</button>
+        <button onClick={upVoteThread}>
+          Like: {threadDetail.upVotesBy.length}
+        </button>
+        <button onClick={downVoteThread}>
+          Unlike: {threadDetail.downVotesBy.length}
+        </button>
       </div>
 
       <h4 className='thread-comment__main'>Comment</h4>
       {threadDetail.comments.map((comment) => (
-        <CommentItem key={comment.id} name={comment.owner.name} {...comment} />
+        <CommentItem
+          key={comment.id}
+          name={comment.owner.name}
+          handleUpVote={() => upVoteComment(comment.id)}
+          handleDownVote={() => downVoteComment(comment.id)}
+          {...comment}
+        />
       ))}
 
       <CommentInput handleAddComment={onAddComment} />

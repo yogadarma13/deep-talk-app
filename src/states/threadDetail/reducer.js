@@ -12,6 +12,8 @@ function threadDetailReducer(threadDetail = null, action = {}) {
     return { ...threadDetail, downVotesBy: [...threadDetail.downVotesBy, action.payload.userId], upVotesBy: threadDetail.upVotesBy.filter((id) => id !== action.payload.userId) };
   case ActionType.CLEAR_VOTE_THREAD:
     return { ...threadDetail, downVotesBy: threadDetail.downVotesBy.filter((id) => id !== action.payload.userId), upVotesBy: threadDetail.upVotesBy.filter((id) => id !== action.payload.userId) };
+  case ActionType.UP_VOTE_COMMENT:
+    return { ...threadDetail, comments: threadDetail.comments.map((comment) => comment.id === action.payload.commentId ? { ...comment, upVotesBy: [...comment.upVotesBy, action.payload.userId] } : comment) };
   default:
     return threadDetail;
   }
