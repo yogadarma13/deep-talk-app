@@ -8,6 +8,7 @@ const ActionType = {
   CLEAR_VOTE_THREAD: 'CLEAR_VOTE_THREAD',
   UP_VOTE_COMMENT: 'UP_VOTE_COMMENT',
   DOWN_VOTE_COMMENT: 'DOWN_VOTE_COMMENT',
+  CLEAR_VOTE_COMMENT: 'CLEAR_VOTE_COMMENT',
 };
 
 function receiveThreadDetailActionCreator(threadDetail) {
@@ -75,6 +76,16 @@ function downVoteCommentActionCreator(userId, commentId) {
   };
 }
 
+function clearVoteCommentActionCreator(userId, commentId) {
+  return {
+    type: ActionType.CLEAR_VOTE_COMMENT,
+    payload: {
+      userId,
+      commentId
+    },
+  };
+}
+
 function asyncReceiveThreadDetail(id) {
   return async (dispatch) => {
     try {
@@ -103,7 +114,7 @@ function asyncUpVoteThread() {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
     const isUserIdExistUpVote = threadDetail.upVotesBy.includes(authUser.id);
-    const isUserIdExistDownVote = threadDetail.downVotesBy.includes(authUser.id,);
+    const isUserIdExistDownVote = threadDetail.downVotesBy.includes(authUser.id);
 
     if (isUserIdExistUpVote) {
       dispatch(clearVoteThreadActionCreator(authUser.id));
@@ -133,7 +144,7 @@ function asyncUpVoteThread() {
 function asyncDownVoteThread() {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
-    const isUserIdExistDownVote = threadDetail.downVotesBy.includes(authUser.id,);
+    const isUserIdExistDownVote = threadDetail.downVotesBy.includes(authUser.id);
     const isUserIdExistUpVote = threadDetail.upVotesBy.includes(authUser.id);
 
     if (isUserIdExistDownVote) {
@@ -165,10 +176,29 @@ function asyncUpVoteComment(commentId) {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
     const threadId = threadDetail.id;
-    dispatch(upVoteCommentActionCreator(authUser.id, commentId));
+    const isUserIdExistUpVote = threadDetail.comments.find((comment) => comment.id === commentId).upVotesBy.includes(authUser.id);
+    const isUserIdExistDownVote = threadDetail.comments.find((comment) => comment.id === commentId).downVotesBy.includes(authUser.id);
+
+    if (isUserIdExistUpVote) {
+      dispatch(clearVoteCommentActionCreator(authUser.id, commentId));
+    } else {
+      dispatch(upVoteCommentActionCreator(authUser.id, commentId));
+    }
+
     try {
-      await api.upVoteComment({ threadId, commentId });
+      if (isUserIdExistUpVote) {
+        await api.clearVoteComment({ threadId, commentId });
+      } else {
+        await api.upVoteComment({ threadId, commentId });
+      }
     } catch (error) {
+      if (isUserIdExistUpVote) {
+        dispatch(upVoteCommentActionCreator(authUser.id, commentId));
+      } else if (isUserIdExistDownVote) {
+        dispatch(downVoteCommentActionCreator(authUser.id, commentId));
+      } else {
+        dispatch(clearVoteCommentActionCreator(authUser.id, commentId));
+      }
       alert(error.message);
     }
   };
@@ -178,10 +208,29 @@ function asyncDownVoteComment(commentId) {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
     const threadId = threadDetail.id;
-    dispatch(downVoteCommentActionCreator(authUser.id, commentId));
+    const isUserIdExistDownVote = threadDetail.comments.find((comment) => comment.id === commentId).downVotesBy.includes(authUser.id);
+    const isUserIdExistUpVote = threadDetail.comments.find((comment) => comment.id === commentId).upVotesBy.includes(authUser.id);
+
+    if (isUserIdExistDownVote) {
+      dispatch(clearVoteCommentActionCreator(authUser.id, commentId));
+    } else {
+      dispatch(downVoteCommentActionCreator(authUser.id, commentId));
+    }
+
     try {
-      await api.downVoteComment({ threadId, commentId });
+      if (isUserIdExistDownVote) {
+        await api.clearVoteComment({ threadId, commentId });
+      } else {
+        await api.downVoteComment({ threadId, commentId });
+      }
     } catch (error) {
+      if (isUserIdExistDownVote) {
+        dispatch(downVoteCommentActionCreator(authUser.id, commentId));
+      } else if (isUserIdExistUpVote) {
+        dispatch(upVoteCommentActionCreator(authUser.id, commentId));
+      } else {
+        dispatch(clearVoteCommentActionCreator(authUser.id, commentId));
+      }
       alert(error.message);
     }
   };

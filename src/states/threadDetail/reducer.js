@@ -16,6 +16,8 @@ function threadDetailReducer(threadDetail = null, action = {}) {
     return { ...threadDetail, comments: threadDetail.comments.map((comment) => comment.id === action.payload.commentId ? { ...comment, upVotesBy: [...comment.upVotesBy, action.payload.userId], downVotesBy: comment.downVotesBy.filter((userId) => userId !== action.payload.userId) } : comment) };
   case ActionType.DOWN_VOTE_COMMENT:
     return { ...threadDetail, comments: threadDetail.comments.map((comment) => comment.id === action.payload.commentId ? { ...comment, downVotesBy: [...comment.downVotesBy, action.payload.userId], upVotesBy: comment.upVotesBy.filter((userId) => userId !== action.payload.userId) } : comment) };
+  case ActionType.CLEAR_VOTE_COMMENT:
+    return { ...threadDetail, comments: threadDetail.comments.map((comment) => comment.id === action.payload.commentId ? { ...comment, downVotesBy: comment.downVotesBy.filter((userId) => userId !== action.payload.userId), upVotesBy: comment.upVotesBy.filter((userId) => userId !== action.payload.userId) } : comment) };
   default:
     return threadDetail;
   }
