@@ -19,11 +19,31 @@ body {
 }
 
 .app-container {
-  display: flex;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.navigation {
+  padding: 6px;
+  min-height: 55px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.navigation nav {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
+.home-page__main {
+  display: flex;
+  justify-content: center;
   flex-direction: column;
-  padding-top: 24px;
+  padding: 20px 0;
 }
 
 .register-page__main, .login-page__main, .add-thread-page__main {
@@ -66,4 +86,16 @@ body {
 .thread-vote__main {
   display: flex;
   gap: 16px;
+}
+
+.table-main {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table-main th,
+.table-main td {
+  padding: 12px;
+  text-align: center;
 }

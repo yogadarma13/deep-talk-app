@@ -19,10 +19,10 @@ function HomePage() {
   }));
 
   return (
-    <>
+    <div className='home-page__main'>
       <button onClick={() => navigate('/addThread')}>Tambah Thread</button>
       <ThreadList threads={allThreads} />
-    </>
+    </div>
   );
 }
 
