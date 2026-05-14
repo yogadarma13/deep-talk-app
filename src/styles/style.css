@@ -39,6 +39,15 @@ body {
   justify-content: flex-end;
 }
 
+.navigation button {
+  border: 0;
+  background-color: transparent;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .home-page__main {
   display: flex;
   justify-content: center;

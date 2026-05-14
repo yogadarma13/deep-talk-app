@@ -1,7 +1,8 @@
 import api from '../../utils/api';
 
 const ActionType = {
-  SET_AUTH_USER: 'SET_AUTH_USER'
+  SET_AUTH_USER: 'SET_AUTH_USER',
+  UNSET_AUTH_USER: 'UNSET_AUTH_USER',
 };
 
 function setAuthUserActionCreator(authUser) {
@@ -10,6 +11,15 @@ function setAuthUserActionCreator(authUser) {
     payload: {
       authUser
     }
+  };
+}
+
+function unsetAuthUserActionCreator() {
+  return {
+    type: ActionType.UNSET_AUTH_USER,
+    payload: {
+      authUser: null,
+    },
   };
 }
 
@@ -40,4 +50,11 @@ function asyncLoginUser({ email, password }) {
   };
 }
 
-export { ActionType, setAuthUserActionCreator, asyncRegisterUser, asyncLoginUser };
+function asyncUnsetAuthUser() {
+  return (dispatch) => {
+    dispatch(unsetAuthUserActionCreator());
+    api.putAccessToken('');
+  };
+}
+
+export { ActionType, setAuthUserActionCreator, asyncRegisterUser, asyncLoginUser, asyncUnsetAuthUser };
