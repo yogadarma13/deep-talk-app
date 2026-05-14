@@ -4,6 +4,7 @@ import { showFormattedDate } from '../utils';
 import CommentItem from '../components/CommentItem';
 import {
   asyncAddNewComment,
+  asyncDownVoteComment,
   asyncDownVoteThread,
   asyncReceiveThreadDetail,
   asyncUpVoteComment,
@@ -42,7 +43,9 @@ function DetailPage() {
     dispatch(asyncUpVoteComment(commentId));
   };
 
-  const downVoteComment = (commentId) => {};
+  const downVoteComment = (commentId) => {
+    dispatch(asyncDownVoteComment(commentId));
+  };
 
   return (
     <div>
