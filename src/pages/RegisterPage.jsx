@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import RegisterInput from '../components/RegisterInput';
 import { asyncRegisterUser } from '../states/authUser/action';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -15,9 +15,6 @@ function RegisterPage() {
   return (
     <div className="register-page__main">
       <RegisterInput handleRegister={onRegister} />
-      <p>
-          Sudah punya akun? <Link to="/">Masuk</Link>
-      </p>
     </div>
   );
 }

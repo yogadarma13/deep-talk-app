@@ -48,7 +48,7 @@ body {
   cursor: pointer;
 }
 
-.login-page__main {
+.login-page__main, .register-page__main {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -63,7 +63,9 @@ body {
 }
 
 .login-page__main::before,
-.login-page__main::after {
+.login-page__main::after,
+.register-page__main::before,
+.register-page__main::after {
   content: '';
   position: absolute;
   border-radius: 50%;
@@ -71,26 +73,28 @@ body {
   z-index: 0;
 }
 
-.login-page__main::before {
+.login-page__main::before,
+.register-page__main::before {
   width: 300px;
   height: 300px;
   top: -100px;
   left: -100px;
 }
 
-.login-page__main::after {
+.login-page__main::after, 
+.register-page__main::after {
   width: 250px;
   height: 250px;
   bottom: -80px;
   right: -80px;
 }
 
-.login-input-card {
+.login-input-card, .register-input-card {
   position: relative;
   z-index: 1;
 }
 
-.login-input-card {
+.login-input-card, .register-input-card {
   width: 100%;
   max-width: 400px;
   background: white;
@@ -108,21 +112,21 @@ body {
   letter-spacing: 1px;
 }
 
-.login-title {
+.login-title, .register-title {
   font-size: 32px;
   font-weight: bold;
   color: #222;
   text-align: center;
 }
 
-.login-subtitle {
+.login-subtitle, .register-subtitle {
   margin-top: 8px;
   text-align: center;
   color: #777;
   font-size: 14px;
 }
 
-.login-form {
+.login-form, .register-form {
   margin-top: 30px;
 }
 
@@ -151,7 +155,7 @@ body {
   border-color: #4f46e5;
 }
 
-.login-button {
+.login-button, .register-button {
   width: 100%;
   padding: 14px;
   border: none;
@@ -164,18 +168,19 @@ body {
   transition: 0.2s ease;
 }
 
-.login-button:hover {
+.login-button:hover,
+.register-button:hover {
   background: #4338ca;
 }
 
-.register-text {
+.register-text, .login-text {
   margin-top: 24px;
   text-align: center;
   font-size: 14px;
   color: #666;
 }
 
-.register-text span {
+.register-text span, .login-text span {
   color: #4f46e5;
   font-weight: bold;
   cursor: pointer;
@@ -188,7 +193,7 @@ body {
   padding: 20px 0;
 }
 
-.register-page__main, .add-thread-page__main {
+.add-thread-page__main {
   display: flex;
   gap: 16px;
   justify-content: center;

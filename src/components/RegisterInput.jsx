@@ -1,6 +1,7 @@
 import React from 'react';
 import useInput from '../hooks/useInput';
 import FieldInput from './FieldInput';
+import { Link } from 'react-router-dom';
 
 function RegisterInput({ handleRegister }) {
   const [name, setName] = useInput('');
@@ -8,24 +9,32 @@ function RegisterInput({ handleRegister }) {
   const [password, setPassword] = useInput('');
 
   return (
-    <>
-      <FieldInput label="Nama" type="text" value={name} handleInput={setName} />
-      <FieldInput
-        label="Email"
-        type="email"
-        value={email}
-        handleInput={setEmail}
-      />
-      <FieldInput
-        label="Password"
-        type="password"
-        value={password}
-        handleInput={setPassword}
-      />
-      <button onClick={() => handleRegister({ name, email, password })}>
-        Daftar
-      </button>
-    </>
+    <div className='register-input-card'>
+      <h2 className="app-name">Deep Talk</h2>
+      <h1 className="register-title">Register Account</h1>
+      <p className="register-subtitle">Please register to create account</p>
+      <div className='register-form'>
+        <FieldInput label="Nama" type="text" value={name} handleInput={setName} />
+        <FieldInput
+          label="Email"
+          type="email"
+          value={email}
+          handleInput={setEmail}
+        />
+        <FieldInput
+          label="Password"
+          type="password"
+          value={password}
+          handleInput={setPassword}
+        />
+        <button className='register-button' onClick={() => handleRegister({ name, email, password })}>
+          Daftar
+        </button>
+      </div>
+      <p className='login-text'>
+          Have an account? <Link to="/"><span>Login</span></Link>
+      </p>
+    </div>
   );
 }
 
