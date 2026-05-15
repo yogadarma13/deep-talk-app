@@ -7,9 +7,7 @@ import HomePage from './pages/HomePage';
 import AddThreadPage from './pages/AddThreadPage';
 import DetailPage from './pages/DetailPage';
 import { asyncPreloadProcess } from './states/isPreload/action';
-import Navigation from './components/Navigation';
 import LeaderboardsPage from './pages/LeaderBoardsPage';
-import { asyncUnsetAuthUser } from './states/authUser/action';
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector((states) => states);
@@ -37,26 +35,14 @@ function App() {
     );
   }
 
-  const onLogout = () => {
-    const confirmLogout = confirm('Yakin ingin keluar?');
-    if (confirmLogout) {
-      dispatch(asyncUnsetAuthUser());
-    }
-  };
-
   return (
     <div className="app-container">
-      <header>
-        <Navigation handleLogout={onLogout} />
-      </header>
-      <main>
-        <Routes>
-          <Route path='/' element={<HomePage />}/>
-          <Route path='/addThread' element={<AddThreadPage />}/>
-          <Route path='/threads/:id' element={<DetailPage />}/>
-          <Route path='/leaderboards' element={<LeaderboardsPage />}/>
-        </Routes>
-      </main>
+      <Routes>
+        <Route path='/' element={<HomePage />}/>
+        <Route path='/addThread' element={<AddThreadPage />}/>
+        <Route path='/threads/:id' element={<DetailPage />}/>
+        <Route path='/leaderboards' element={<LeaderboardsPage />}/>
+      </Routes>
     </div>
   );
 }
