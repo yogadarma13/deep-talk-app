@@ -1,34 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function TopBar({ navigateAddThread, navigateLeaderboards, onLogout }) {
+function TopBar({ pathname, onLogout }) {
   return (
-    <header className="topbar">
+    <>
       <div>
-        <h1 className="topbar-app-name">Deep Talk</h1>
-
+        <Link to={'/'} className='topbar-app-name-link'>
+          <h1 className="topbar-app-name">Deep Talk</h1>
+        </Link>
         <p className="topbar-app-subtitle">Share your thoughts with everyone</p>
       </div>
 
       <div className="topbar-actions">
-        <button
-          className="create-thread-button"
-          onClick={navigateAddThread}
-        >
-          + Create Thread
-        </button>
+        {pathname !== '/addThread' ? (
+          <Link className="create-thread-button" to={'/addThread'}>
+            + Create Thread
+          </Link>
+        ) : null}
 
-        <button
-          className="leaderboard-button"
-          onClick={navigateLeaderboards}
-        >
+        <Link className="leaderboard-button" to={'/leaderboards'}>
           Leaderboard
-        </button>
+        </Link>
 
-        <button className="logout-button" onClick={onLogout}>
+        <Link className="logout-button" onClick={onLogout}>
           Logout
-        </button>
+        </Link>
       </div>
-    </header>
+    </>
   );
 }
 
