@@ -186,14 +186,6 @@ body {
   cursor: pointer;
 }
 
-.add-thread-page__main {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-direction: column;
-  padding: 64px;
-}
-
 .thread-comment__main {
   margin-top: 24px;
 }
@@ -225,12 +217,6 @@ body {
 .table-main td {
   padding: 12px;
   text-align: center;
-}
-
-.home-page__main {
-  max-width: 900px;
-  margin: auto;
-  padding: 10px 20px 80px;
 }
 
 .topbar {
@@ -313,6 +299,12 @@ body {
 
 .create-thread-button:hover {
   opacity: 0.85;
+}
+
+.home-page__main {
+  max-width: 900px;
+  margin: auto;
+  padding: 10px 20px 80px;
 }
 
 .category-section {
@@ -476,6 +468,115 @@ body {
   font-weight: 500;
 }
 
+.add-thread-page__main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px 40px;
+}
+
+.add-thread-card {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  padding: 40px 32px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.06),
+    0 4px 10px rgba(79, 70, 229, 0.06);
+}
+
+.add-thread-card::before {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  top: -100px;
+  right: -100px;
+  border-radius: 50%;
+  background: rgba(79, 70, 229, 0.06);
+  filter: blur(10px);
+}
+
+.add-thread-header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 30px;
+}
+
+.add-thread-title {
+  font-size: 34px;
+  color: #4f46e5;
+  font-weight: bold;
+}
+
+.add-thread-subtitle {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.add-thread-thread-form {
+  position: relative;
+  z-index: 1;
+}
+
+.add-thread-input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px;
+}
+
+.add-thread-input-group label {
+  margin-bottom: 10px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.add-thread-input-group input,
+.add-thread-input-group select,
+.add-thread-input-group textarea {
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.add-thread-input-group input:focus,
+.add-thread-input-group select:focus,
+.add-thread-input-group textarea:focus {
+  border-color: #4f46e5;
+}
+
+.add-thread-submit-button {
+  width: 100%;
+  border: none;
+  padding: 16px;
+  border-radius: 18px;
+  background: linear-gradient(
+    to right,
+    #4f46e5,
+    #6366f1
+  );
+
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow:
+    0 10px 20px rgba(79, 70, 229, 0.18);
+}
+
+.add-thread-submit-button:hover {
+  opacity: 0.85;
+}
+
 @media screen and (max-width: 768px) {
   .topbar {
     flex-direction: column;
@@ -493,11 +594,19 @@ body {
     width: 100%;
   }
 
-  .thread-title {
+  .thread-item-title {
     font-size: 20px;
   }
 
-  .thread-footer {
+  .thread-item-footer {
     flex-wrap: wrap;
+  }
+
+  .add-thread-card {
+    padding: 30px 22px;
+  }
+
+  .add-thread-title {
+    font-size: 28px;
   }
 }
