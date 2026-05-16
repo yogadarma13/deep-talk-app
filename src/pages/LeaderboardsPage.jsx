@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
+import LeaderboardItem from '../components/LeaderboardItem';
 
 function LeaderboardsPage() {
   const { leaderboards } = useSelector((states) => states);
@@ -11,24 +12,24 @@ function LeaderboardsPage() {
   }, [dispatch]);
 
   return (
-    <table className="table-main">
-      <thead>
-        <tr>
-          <th>Peringkat</th>
-          <th>Nama</th>
-          <th>Nilai</th>
-        </tr>
-      </thead>
-      <tbody>
-        {leaderboards.map((item, index) => (
-          <tr key={item.user.id}>
-            <td>{index + 1}</td>
-            <td>{item.user.name}</td>
-            <td>{item.score}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="leaderboard-page__main">
+      <div className="leaderboard-card">
+        <h1 className="leaderboard-title">
+          Leaderboards
+        </h1>
+
+        <div className="leaderboard-list">
+          {leaderboards.map((item, index) => (
+            <LeaderboardItem
+              key={item.user.id}
+              rank={index + 1}
+              name={item.user.name}
+              score={item.score}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 

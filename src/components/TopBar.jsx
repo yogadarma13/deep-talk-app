@@ -19,7 +19,7 @@ function TopBar({ pathname, onLogout }) {
         ) : null}
 
         <Link className="leaderboard-button" to={'/leaderboards'}>
-          Leaderboard
+          Leaderboards
         </Link>
 
         <Link className="logout-button" onClick={onLogout}>
