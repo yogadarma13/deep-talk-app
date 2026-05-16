@@ -1,10 +1,11 @@
 import React from 'react';
 import useInput from '../hooks/useInput';
+import useContentEditable from '../hooks/useContentEditable';
 
 function AddThreadInput({ handleAddThread }) {
   const [title, setTitle] = useInput('');
   const [category, setCategory] = useInput('');
-  const [body, setBody] = useInput('');
+  const [body, setBody] = useContentEditable('');
 
   return (
     <div className='add-thread-card'>
@@ -37,11 +38,11 @@ function AddThreadInput({ handleAddThread }) {
         <div className="add-thread-input-group">
           <label>Description</label>
 
-          <textarea
-            placeholder="Write your thread description..."
-            rows="6"
-            value={body}
-            onChange={setBody}
+          <div
+            className="add-thread-input-group-body"
+            data-placeholder="Write your thread description..."
+            contentEditable
+            onInput={setBody}
           />
         </div>
         <button
