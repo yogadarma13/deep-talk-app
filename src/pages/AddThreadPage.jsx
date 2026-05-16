@@ -8,8 +8,6 @@ function AddThreadPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const categories = ['General', 'Discussion', 'Redux', 'Perkenalan'];
-
   const onAddThread = ({ title, body, category }) => {
     if (title === '' || category === '' || body === '') {
       alert('All fields must be filled in');
@@ -21,7 +19,6 @@ function AddThreadPage() {
   return (
     <div className='add-thread-page__main'>
       <AddThreadInput
-        categories={categories}
         handleAddThread={onAddThread}
       />
     </div>

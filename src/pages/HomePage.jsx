@@ -7,15 +7,14 @@ import Categories from '../components/Categories';
 function HomePage() {
   const { threads = [], users = [] } = useSelector((states) => states);
   const dispatch = useDispatch();
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const categories = ['All', 'General', 'Discussion', 'Redux', 'Perkenalan'];
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     dispatch(asyncPopulateThreadsAndUsers());
   }, [dispatch]);
 
   const filteredThreads = useMemo(() => {
-    if (selectedCategory === 'All') {
+    if (selectedCategory === '') {
       return threads.map((thread) => ({
         ...thread,
         user: users.find((user) => user.id === thread.ownerId),
@@ -33,12 +32,18 @@ function HomePage() {
       }));
   }, [selectedCategory, threads]);
 
+  const categories = threads.map((thread) => thread.category);
+
+  const handleSelectedCategory = (category) => {
+    setSelectedCategory(category !== selectedCategory ? category : '');
+  };
+
   return (
     <div className="home-page__main">
       <Categories
         categories={categories}
         selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
+        handleSelectedCategory={handleSelectedCategory}
       />
       <ThreadList threads={filteredThreads} />
     </div>

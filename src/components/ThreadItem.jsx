@@ -30,7 +30,7 @@ function ThreadItem({
             <p className="thread-item-date">{showFormattedDate(createdAt)}</p>
           </div>
         </div>
-        <div className="thread-item-category">{category}</div>
+        <div className="thread-item-category">#{category}</div>
         <h2 className="thread-item-title">{title}</h2>
         <div className="thread-item-body">{parser(body)}</div>
         <div className="thread-item-footer">

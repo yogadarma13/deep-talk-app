@@ -301,9 +301,18 @@ body {
 
 .category-section {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.category-section h3 {
+  color: #4f46e5;
+}
+
+.category-list {
+  display: flex;
   gap: 12px;
   overflow-x: auto;
-
   margin-bottom: 28px;
   padding-bottom: 6px;
 }

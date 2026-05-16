@@ -1,7 +1,7 @@
 import React from 'react';
 import useInput from '../hooks/useInput';
 
-function AddThreadInput({ categories, handleAddThread }) {
+function AddThreadInput({ handleAddThread }) {
   const [title, setTitle] = useInput('');
   const [category, setCategory] = useInput('');
   const [body, setBody] = useInput('');
@@ -27,18 +27,12 @@ function AddThreadInput({ categories, handleAddThread }) {
         <div className="add-thread-input-group">
           <label>Category</label>
 
-          <select
+          <input
+            type="text"
+            placeholder="Enter thread category"
             value={category}
             onChange={setCategory}
-          >
-            <option value="">Select category</option>
-
-            {categories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
+          />
         </div>
         <div className="add-thread-input-group">
           <label>Description</label>
