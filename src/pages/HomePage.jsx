@@ -4,8 +4,10 @@ import ThreadList from '../components/ThreadList';
 import { asyncPopulateThreadsAndUsers } from '../states/shared/action';
 import Categories from '../components/Categories';
 import Loading from '../components/Loading';
+import { asyncDownVoteThread, asyncUpVoteThread } from '../states/threads/action';
 
 function HomePage() {
+  const authUser = useSelector((state) => state.authUser);
   const threads = useSelector((state) => state.threads);
   const users = useSelector((state) => state.users);
   const isLoading = useSelector((state) => state.isLoading);
@@ -42,6 +44,14 @@ function HomePage() {
     setSelectedCategory(category !== selectedCategory ? category : '');
   };
 
+  const upVoteThread = (threadId) => {
+    dispatch(asyncUpVoteThread(threadId));
+  };
+
+  const downVoteThread = (threadId) => {
+    dispatch(asyncDownVoteThread(threadId));
+  };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -53,7 +63,12 @@ function HomePage() {
         selectedCategory={selectedCategory}
         handleSelectedCategory={handleSelectedCategory}
       />
-      <ThreadList threads={filteredThreads} />
+      <ThreadList
+        userId={authUser.id}
+        threads={filteredThreads}
+        handleUpVote={upVoteThread}
+        handleDownVote={downVoteThread}
+      />
     </div>
   );
 }

@@ -1,8 +1,7 @@
 import React from 'react';
 import parser from 'html-react-parser';
-import { FaRegComments } from 'react-icons/fa6';
-import { BiLike, BiDislike, BiSolidLike, BiSolidDislike } from 'react-icons/bi';
 import { showFormattedDate } from '../utils';
+import ActionItems from './ActionItems';
 
 function DetailItem({
   userId,
@@ -36,33 +35,14 @@ function DetailItem({
 
       <div className="detail-body">{parser(body)}</div>
 
-      <div className="detail-stats">
-        <div className="detail-stat">
-          <FaRegComments className="detail-stat-comment" />
-          {comments.length}
-        </div>
-        <div className="detail-stat">
-          <button onClick={handleUpVote}>
-            {upVotesBy.includes(userId) ? (
-              <BiSolidLike className="detail-stat-active" />
-            ) : (
-              <BiLike />
-            )}
-          </button>
-          {upVotesBy.length}
-        </div>
-
-        <div className="detail-stat">
-          <button onClick={handleDownVote}>
-            {downVotesBy.includes(userId) ? (
-              <BiSolidDislike className="detail-stat-active" />
-            ): (
-              <BiDislike />
-            )}
-          </button>
-          {downVotesBy.length}
-        </div>
-      </div>
+      <ActionItems
+        userId={userId}
+        totalComments={comments.length}
+        upVotesBy={upVotesBy}
+        downVotesBy={downVotesBy}
+        upVoteHandler={handleUpVote}
+        downVoteHandler={handleDownVote}
+      />
     </div>
   );
 }

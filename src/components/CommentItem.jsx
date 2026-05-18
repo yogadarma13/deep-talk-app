@@ -31,7 +31,7 @@ function CommentItem({
         <div className="comment-item-stat">
           <button onClick={handleUpVote}>
             {upVotesBy.includes(userId) ? (
-              <BiSolidLike className="detail-stat-active" />
+              <BiSolidLike className="comment-item-stat-active" />
             ) : (
               <BiLike />
             )}
@@ -41,7 +41,7 @@ function CommentItem({
         <div className="comment-item-stat">
           <button onClick={handleDownVote}>
             {downVotesBy.includes(userId) ? (
-              <BiSolidDislike className="detail-stat-active" />
+              <BiSolidDislike className="comment-item-stat-active" />
             ) : (
               <BiDislike />
             )}

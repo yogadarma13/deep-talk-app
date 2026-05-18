@@ -2,10 +2,10 @@ import React from 'react';
 import parser from 'html-react-parser';
 import { Link } from 'react-router-dom';
 import { showFormattedDate } from '../utils';
-import { FaRegComments } from 'react-icons/fa6';
-import { BiLike, BiDislike } from 'react-icons/bi';
+import ActionItems from './ActionItems';
 
 function ThreadItem({
+  userId,
   id,
   title,
   createdAt,
@@ -15,7 +15,22 @@ function ThreadItem({
   upVotesBy,
   downVotesBy,
   user,
+  handleUpVote,
+  handleDownVote
 }) {
+
+  const upVoteHandler = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    handleUpVote(id);
+  };
+
+  const downVoteHandler = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    handleDownVote(id);
+  };
+
   return (
     <Link to={`/threads/${id}`} className="thread-item-link">
       <div className="thread-item-card">
@@ -33,17 +48,14 @@ function ThreadItem({
         <div className="thread-item-category">#{category}</div>
         <h2 className="thread-item-title">{title}</h2>
         <div className="thread-item-body">{parser(body)}</div>
-        <div className="thread-item-footer">
-          <div className="thread-item-stat">
-            <FaRegComments /> {totalComments}
-          </div>
-          <div className="thread-item-stat">
-            <BiLike /> {upVotesBy.length}
-          </div>
-          <div className="thread-item-stat">
-            <BiDislike /> {downVotesBy.length}
-          </div>
-        </div>
+        <ActionItems
+          userId={userId}
+          totalComments={totalComments}
+          upVotesBy={upVotesBy}
+          downVotesBy={downVotesBy}
+          upVoteHandler={upVoteHandler}
+          downVoteHandler={downVoteHandler}
+        />
       </div>
     </Link>
   );
