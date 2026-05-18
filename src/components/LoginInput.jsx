@@ -2,8 +2,9 @@ import React from 'react';
 import FieldInput from './FieldInput';
 import useInput from '../hooks/useInput';
 import { Link } from 'react-router-dom';
+import LoadingButton from './LoadingButton';
 
-function LoginInput({ handleLogin }) {
+function LoginInput({ isloading, handleLogin }) {
   const [email, setEmail] = useInput('');
   const [password, setPassword] = useInput('');
 
@@ -26,9 +27,16 @@ function LoginInput({ handleLogin }) {
           value={password}
           handleInput={setPassword}
         />
-        <button className='login-button' onClick={() => handleLogin({ email, password })}>
-          Masuk
-        </button>
+        {isloading ? (
+          <LoadingButton />
+        ) : (
+          <button
+            className="login-button"
+            onClick={() => handleLogin({ email, password })}
+          >
+            Masuk
+          </button>
+        )}
       </div>
       <p className='register-text'>
           Don&apos;t have an account? <Link to="/register"><span>Register</span></Link>

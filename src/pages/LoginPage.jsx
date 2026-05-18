@@ -1,9 +1,10 @@
 import React from 'react';
 import LoginInput from '../components/LoginInput';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { asyncLoginUser } from '../states/authUser/action';
 
 function LoginPage() {
+  const { isLoading } = useSelector((states) => states);
   const dispatch = useDispatch();
   const onLogin = ({ email, password }) => {
     dispatch(asyncLoginUser({ email, password }));
@@ -11,7 +12,7 @@ function LoginPage() {
 
   return (
     <div className="login-page__main">
-      <LoginInput handleLogin={onLogin} />
+      <LoginInput isloading={isLoading} handleLogin={onLogin} />
     </div>
   );
 }

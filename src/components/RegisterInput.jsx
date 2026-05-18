@@ -2,8 +2,9 @@ import React from 'react';
 import useInput from '../hooks/useInput';
 import FieldInput from './FieldInput';
 import { Link } from 'react-router-dom';
+import LoadingButton from './LoadingButton';
 
-function RegisterInput({ handleRegister }) {
+function RegisterInput({ isLoading, handleRegister }) {
   const [name, setName] = useInput('');
   const [email, setEmail] = useInput('');
   const [password, setPassword] = useInput('');
@@ -27,9 +28,16 @@ function RegisterInput({ handleRegister }) {
           value={password}
           handleInput={setPassword}
         />
-        <button className='register-button' onClick={() => handleRegister({ name, email, password })}>
-          Daftar
-        </button>
+        {isLoading ? (
+          <LoadingButton />
+        ) : (
+          <button
+            className="register-button"
+            onClick={() => handleRegister({ name, email, password })}
+          >
+            Daftar
+          </button>
+        )}
       </div>
       <p className='login-text'>
           Have an account? <Link to="/"><span>Login</span></Link>

@@ -1,4 +1,5 @@
 import api from '../../utils/api';
+import { hideLoading, showLoading } from '../loading/action';
 
 const ActionType = {
   RECEIVE_THREADS: 'RECEIVE_THREADS',
@@ -25,6 +26,7 @@ function addNewThreadActionCreator(thread) {
 
 function asyncAddNewThread({ title, body, category, navigate }) {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const thread = await api.addNewThread({ title, body, category });
       dispatch(addNewThreadActionCreator(thread));
@@ -33,6 +35,7 @@ function asyncAddNewThread({ title, body, category, navigate }) {
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 

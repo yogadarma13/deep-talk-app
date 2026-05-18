@@ -1,4 +1,5 @@
 import api from '../../utils/api';
+import { hideLoading, showLoading } from '../loading/action';
 
 const ActionType = {
   SET_AUTH_USER: 'SET_AUTH_USER',
@@ -24,7 +25,8 @@ function unsetAuthUserActionCreator() {
 }
 
 function asyncRegisterUser({ name, email, password, navigate }) {
-  return async () => {
+  return async (dispatch) => {
+    dispatch(showLoading());
     try {
       await api.register({ name, email, password });
       alert('Berhasil membuat akun');
@@ -32,11 +34,13 @@ function asyncRegisterUser({ name, email, password, navigate }) {
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 
 function asyncLoginUser({ email, password }) {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const token = await api.login({ email, password });
       api.putAccessToken(token);
@@ -47,6 +51,7 @@ function asyncLoginUser({ email, password }) {
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import useInput from '../hooks/useInput';
 import useContentEditable from '../hooks/useContentEditable';
+import LoadingButton from './LoadingButton';
 
-function AddThreadInput({ handleAddThread }) {
+function AddThreadInput({ isLoading, handleAddThread }) {
   const [title, setTitle] = useInput('');
   const [category, setCategory] = useInput('');
   const [body, setBody] = useContentEditable('');
@@ -45,11 +46,16 @@ function AddThreadInput({ handleAddThread }) {
             onInput={setBody}
           />
         </div>
-        <button
-          className='add-thread-submit-button'
-          onClick={() => handleAddThread({ title, category, body })}>
+        {isLoading ? (
+          <LoadingButton />
+        ) : (
+          <button
+            className="add-thread-submit-button"
+            onClick={() => handleAddThread({ title, category, body })}
+          >
             Post Thread
-        </button>
+          </button>
+        )}
       </div>
     </div>
   );

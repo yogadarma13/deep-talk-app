@@ -12,10 +12,11 @@ import { useParams } from 'react-router-dom';
 import CommentInput from '../components/CommentInput';
 import DetailItem from '../components/DetailItem';
 import CommentList from '../components/CommentList';
+import Loading from '../components/Loading';
 
 function DetailPage() {
   const { id } = useParams();
-  const { threadDetail = null, authUser = null } = useSelector((states) => states);
+  const { threadDetail = null, authUser = null, isLoading = false } = useSelector((states) => states);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,6 +46,10 @@ function DetailPage() {
   const downVoteComment = (commentId) => {
     dispatch(asyncDownVoteComment(commentId));
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="detail-page__main">

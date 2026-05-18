@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import ThreadList from '../components/ThreadList';
 import { asyncPopulateThreadsAndUsers } from '../states/shared/action';
 import Categories from '../components/Categories';
+import Loading from '../components/Loading';
 
 function HomePage() {
-  const { threads = [], users = [] } = useSelector((states) => states);
+  const { threads = [], users = [], isLoading = false } = useSelector((states) => states);
   const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -37,6 +38,10 @@ function HomePage() {
   const handleSelectedCategory = (category) => {
     setSelectedCategory(category !== selectedCategory ? category : '');
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="home-page__main">

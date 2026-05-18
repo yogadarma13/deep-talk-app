@@ -1,4 +1,5 @@
 import api from '../../utils/api';
+import { hideLoading, showLoading } from '../loading/action';
 
 const ActionType = {
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
@@ -88,12 +89,14 @@ function clearVoteCommentActionCreator(userId, commentId) {
 
 function asyncReceiveThreadDetail(id) {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const threadDetail = await api.getThreadDetail(id);
       dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 

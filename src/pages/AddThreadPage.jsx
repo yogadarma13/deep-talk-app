@@ -1,10 +1,11 @@
 import React from 'react';
 import AddThreadInput from '../components/AddThreadInput';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { asyncAddNewThread } from '../states/threads/action';
 import { useNavigate } from 'react-router-dom';
 
 function AddThreadPage() {
+  const { isLoading } = useSelector((states) => states);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,6 +20,7 @@ function AddThreadPage() {
   return (
     <div className='add-thread-page__main'>
       <AddThreadInput
+        isLoading={isLoading}
         handleAddThread={onAddThread}
       />
     </div>
