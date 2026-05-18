@@ -18,7 +18,7 @@ function AddThreadPage() {
   };
 
   return (
-    <div className='add-thread-page__main'>
+    <div className="add-thread-page__main">
       <AddThreadInput
         isLoading={isLoading}
         handleAddThread={onAddThread}

@@ -10,11 +10,11 @@ function RegisterInput({ isLoading, handleRegister }) {
   const [password, setPassword] = useInput('');
 
   return (
-    <div className='register-input-card'>
+    <div className="register-input-card">
       <h2 className="app-name">Deep Talk</h2>
       <h1 className="register-title">Register Account</h1>
       <p className="register-subtitle">Please register to create account</p>
-      <div className='register-form'>
+      <div className="register-form">
         <FieldInput label="Nama" type="text" value={name} handleInput={setName} />
         <FieldInput
           label="Email"
@@ -39,7 +39,7 @@ function RegisterInput({ isLoading, handleRegister }) {
           </button>
         )}
       </div>
-      <p className='login-text'>
+      <p className="login-text">
           Have an account? <Link to="/"><span>Login</span></Link>
       </p>
     </div>

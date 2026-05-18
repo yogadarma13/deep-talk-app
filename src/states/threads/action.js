@@ -30,7 +30,7 @@ function asyncAddNewThread({ title, body, category, navigate }) {
     try {
       const thread = await api.addNewThread({ title, body, category });
       dispatch(addNewThreadActionCreator(thread));
-      alert('Berhasil menambahkan thread');
+      alert('Thread added successfully');
       navigate('/');
     } catch (error) {
       alert(error.message);

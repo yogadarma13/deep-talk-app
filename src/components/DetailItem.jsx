@@ -49,7 +49,7 @@ function DetailItem({
         <div className="detail-stat">
           <button onClick={handleDownVote}>
             {downVotesBy.includes(userId) ? (
-              <BiSolidDislike className='detail-stat-active' />
+              <BiSolidDislike className="detail-stat-active" />
             ): (
               <BiDislike />
             )}

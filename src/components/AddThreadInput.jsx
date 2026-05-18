@@ -9,13 +9,13 @@ function AddThreadInput({ isLoading, handleAddThread }) {
   const [body, setBody] = useContentEditable('');
 
   return (
-    <div className='add-thread-card'>
+    <div className="add-thread-card">
       <div className="add-thread-header">
         <h1 className="add-thread-title">Create Thread</h1>
         <p className="add-thread-subtitle">Share your thoughts with everyone</p>
       </div>
 
-      <div className='add-thread-form'>
+      <div className="add-thread-form">
         <div className="add-thread-input-group">
           <label>Title</label>
 

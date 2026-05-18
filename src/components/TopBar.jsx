@@ -5,7 +5,7 @@ function TopBar({ pathname, onLogout }) {
   return (
     <>
       <div>
-        <Link to={'/'} className='topbar-app-name-link'>
+        <Link to={'/'} className="topbar-app-name-link">
           <h1 className="topbar-app-name">Deep Talk</h1>
         </Link>
         <p className="topbar-app-subtitle">Share your thoughts with everyone</p>

@@ -29,7 +29,7 @@ function asyncRegisterUser({ name, email, password, navigate }) {
     dispatch(showLoading());
     try {
       await api.register({ name, email, password });
-      alert('Berhasil membuat akun');
+      alert('Successfully created an account');
       navigate('/');
     } catch (error) {
       alert(error.message);
@@ -47,7 +47,7 @@ function asyncLoginUser({ email, password }) {
 
       const authUser = await api.getOwnProfile();
       dispatch(setAuthUserActionCreator(authUser));
-      alert(`Selamat datang, ${authUser.name}`);
+      alert(`Welcome, ${authUser.name}`);
     } catch (error) {
       alert(error.message);
     }

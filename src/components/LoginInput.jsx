@@ -9,12 +9,12 @@ function LoginInput({ isloading, handleLogin }) {
   const [password, setPassword] = useInput('');
 
   return (
-    <div className='login-input-card'>
+    <div className="login-input-card">
       <h2 className="app-name">Deep Talk</h2>
       <h1 className="login-title">Welcome Back</h1>
       <p className="login-subtitle">Please login to continue</p>
 
-      <div className='login-form'>
+      <div className="login-form">
         <FieldInput
           label="Email"
           type="email"
@@ -38,7 +38,7 @@ function LoginInput({ isloading, handleLogin }) {
           </button>
         )}
       </div>
-      <p className='register-text'>
+      <p className="register-text">
           Don&apos;t have an account? <Link to="/register"><span>Register</span></Link>
       </p>
     </div>

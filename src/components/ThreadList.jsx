@@ -3,7 +3,7 @@ import ThreadItem from './ThreadItem';
 
 function ThreadList({ threads }) {
   return (
-    <section className='thread-list'>
+    <section className="thread-list">
       {threads.map((thread) => <ThreadItem key={thread.id} {...thread} />)}
     </section>
   );

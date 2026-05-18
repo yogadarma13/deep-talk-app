@@ -4,7 +4,7 @@ function Categories({ categories, selectedCategory, handleSelectedCategory }) {
   return (
     <section className="category-section">
       <h3>Popular Category</h3>
-      <div className='category-list'>
+      <div className="category-list">
         {categories.map((category) => (
           <button
             key={category}
