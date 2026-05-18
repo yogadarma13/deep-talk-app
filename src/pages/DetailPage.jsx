@@ -26,10 +26,6 @@ function DetailPage() {
     dispatch(asyncReceiveThreadDetail(id));
   }, [dispatch]);
 
-  if (!threadDetail) {
-    return null;
-  }
-
   const onAddComment = (content) => {
     dispatch(asyncAddNewComment(content));
   };
@@ -50,7 +46,7 @@ function DetailPage() {
     dispatch(asyncDownVoteComment(commentId));
   };
 
-  if (isLoading) {
+  if (!threadDetail) {
     return <Loading />;
   }
 
@@ -64,7 +60,7 @@ function DetailPage() {
         handleDownVote={downVoteThread}
         {...threadDetail}
       />
-      <CommentInput handleAddComment={onAddComment} />
+      <CommentInput isLoading={isLoading} handleAddComment={onAddComment} />
       {threadDetail.comments.length > 0 ? (
         <CommentList
           userId={authUser.id}

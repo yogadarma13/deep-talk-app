@@ -28,7 +28,7 @@ function App() {
   }
 
   const onLogout = () => {
-    const confirmLogout = confirm('Yakin ingin keluar?');
+    const confirmLogout = confirm('Are you sure you want to log out?');
     if (confirmLogout) {
       dispatch(asyncUnsetAuthUser());
     }

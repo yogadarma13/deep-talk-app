@@ -32,7 +32,7 @@ function DetailItem({
         </div>
       </div>
 
-      <p className="detail-body">{parser(body)}</p>
+      <div className="detail-body">{parser(body)}</div>
 
       <div className="detail-stats">
         <div className="detail-stat">

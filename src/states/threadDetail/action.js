@@ -3,6 +3,7 @@ import { hideLoading, showLoading } from '../loading/action';
 
 const ActionType = {
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
+  CLEAR_THREAD_DETAIL: 'CLEAR_THREAD_DETAIL',
   ADD_NEW_COMMENT: 'ADD_NEW_COMMENT',
   UP_VOTE_THREAD: 'UP_VOTE_THREAD',
   DOWN_VOTE_THREAD: 'DOWN_VOTE_THREAD',
@@ -18,6 +19,12 @@ function receiveThreadDetailActionCreator(threadDetail) {
     payload: {
       threadDetail,
     },
+  };
+}
+
+function clearThreadDetailActionCreator() {
+  return {
+    type: ActionType.CLEAR_THREAD_DETAIL,
   };
 }
 
@@ -90,6 +97,7 @@ function clearVoteCommentActionCreator(userId, commentId) {
 function asyncReceiveThreadDetail(id) {
   return async (dispatch) => {
     dispatch(showLoading());
+    dispatch(clearThreadDetailActionCreator());
     try {
       const threadDetail = await api.getThreadDetail(id);
       dispatch(receiveThreadDetailActionCreator(threadDetail));
@@ -102,6 +110,7 @@ function asyncReceiveThreadDetail(id) {
 
 function asyncAddNewComment(content) {
   return async (dispatch, getState) => {
+    dispatch(showLoading());
     try {
       const { threadDetail } = getState();
       const id = threadDetail.id;
@@ -110,6 +119,7 @@ function asyncAddNewComment(content) {
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 

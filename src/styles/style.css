@@ -521,7 +521,6 @@ body {
     var(--purple-dark-color),
     var(--purple-light-color)
   );
-
   color: white;
   font-size: 15px;
   font-weight: 600;
@@ -822,6 +821,7 @@ body {
   padding: 18px;
   border-radius: 18px;
   outline: none;
+  margin-bottom: 18px;
   font-size: 14px;
   transition: 0.2s ease;
   border: 1px solid var(--border-color);
@@ -835,7 +835,6 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  margin-top: 18px;
   border: none;
   padding: 16px;
   border-radius: 18px;

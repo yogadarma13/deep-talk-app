@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import useContentEditable from '../hooks/useContentEditable';
+import LoadingButton from './LoadingButton';
 
-function CommentInput({ handleAddComment }) {
+function CommentInput({ isLoading, handleAddComment }) {
   const [comment, handleCommentValue, setComment] = useContentEditable('');
   const commentRef = useRef();
 
@@ -26,7 +27,11 @@ function CommentInput({ handleAddComment }) {
         contentEditable
         onInput={handleCommentValue}
       />
-      <button onClick={onSubmitComment}>Post Comment</button>
+      {isLoading ? (
+        <LoadingButton />
+      ) : (
+        <button onClick={onSubmitComment}>Post Comment</button>
+      )}
     </div>
   );
 }
