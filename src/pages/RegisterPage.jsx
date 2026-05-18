@@ -5,7 +5,7 @@ import { asyncRegisterUser } from '../states/authUser/action';
 import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
-  const { isLoading } = useSelector((states) => states);
+  const isLoading = useSelector((state) => state.isLoading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

@@ -6,7 +6,10 @@ import Categories from '../components/Categories';
 import Loading from '../components/Loading';
 
 function HomePage() {
-  const { threads = [], users = [], isLoading = false } = useSelector((states) => states);
+  const threads = useSelector((state) => state.threads);
+  const users = useSelector((state) => state.users);
+  const isLoading = useSelector((state) => state.isLoading);
+
   const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState('');
 

@@ -5,7 +5,7 @@ import { asyncAddNewThread } from '../states/threads/action';
 import { useNavigate } from 'react-router-dom';
 
 function AddThreadPage() {
-  const { isLoading } = useSelector((states) => states);
+  const isLoading = useSelector((state) => state.isLoading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

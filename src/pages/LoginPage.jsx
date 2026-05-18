@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { asyncLoginUser } from '../states/authUser/action';
 
 function LoginPage() {
-  const { isLoading } = useSelector((states) => states);
+  const isLoading = useSelector((state) => state.isLoading);
   const dispatch = useDispatch();
+
   const onLogin = ({ email, password }) => {
     dispatch(asyncLoginUser({ email, password }));
   };

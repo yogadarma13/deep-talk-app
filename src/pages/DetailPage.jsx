@@ -16,7 +16,10 @@ import Loading from '../components/Loading';
 
 function DetailPage() {
   const { id } = useParams();
-  const { threadDetail = null, authUser = null, isLoading = false } = useSelector((states) => states);
+  const threadDetail = useSelector((state) => state.threadDetail);
+  const authUser = useSelector((state) => state.authUser);
+  const isLoading = useSelector((state) => state.isLoading);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

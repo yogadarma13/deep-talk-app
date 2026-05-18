@@ -5,7 +5,9 @@ import LeaderboardItem from '../components/LeaderboardItem';
 import Loading from '../components/Loading';
 
 function LeaderboardsPage() {
-  const { leaderboards, isLoading } = useSelector((states) => states);
+  const leaderboards = useSelector((state) => state.leaderboards);
+  const isLoading = useSelector((state) => state.isLoading);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

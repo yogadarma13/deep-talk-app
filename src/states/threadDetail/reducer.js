@@ -5,19 +5,83 @@ function threadDetailReducer(threadDetail = null, action = {}) {
   case ActionType.RECEIVE_THREAD_DETAIL:
     return action.payload.threadDetail;
   case ActionType.ADD_NEW_COMMENT:
-    return { ...threadDetail, comments: [action.payload.comment, ...threadDetail.comments] };
+    return {
+      ...threadDetail,
+      comments: [action.payload.comment, ...threadDetail.comments],
+    };
   case ActionType.UP_VOTE_THREAD:
-    return { ...threadDetail, upVotesBy: [...threadDetail.upVotesBy, action.payload.userId], downVotesBy: threadDetail.downVotesBy.filter((id) => id !== action.payload.userId) };
+    return {
+      ...threadDetail,
+      upVotesBy: [...threadDetail.upVotesBy, action.payload.userId],
+      downVotesBy: threadDetail.downVotesBy.filter(
+        (id) => id !== action.payload.userId,
+      ),
+    };
   case ActionType.DOWN_VOTE_THREAD:
-    return { ...threadDetail, downVotesBy: [...threadDetail.downVotesBy, action.payload.userId], upVotesBy: threadDetail.upVotesBy.filter((id) => id !== action.payload.userId) };
+    return {
+      ...threadDetail,
+      downVotesBy: [...threadDetail.downVotesBy, action.payload.userId],
+      upVotesBy: threadDetail.upVotesBy.filter(
+        (id) => id !== action.payload.userId,
+      ),
+    };
   case ActionType.CLEAR_VOTE_THREAD:
-    return { ...threadDetail, downVotesBy: threadDetail.downVotesBy.filter((id) => id !== action.payload.userId), upVotesBy: threadDetail.upVotesBy.filter((id) => id !== action.payload.userId) };
+    return {
+      ...threadDetail,
+      downVotesBy: threadDetail.downVotesBy.filter(
+        (id) => id !== action.payload.userId,
+      ),
+      upVotesBy: threadDetail.upVotesBy.filter(
+        (id) => id !== action.payload.userId,
+      ),
+    };
   case ActionType.UP_VOTE_COMMENT:
-    return { ...threadDetail, comments: threadDetail.comments.map((comment) => comment.id === action.payload.commentId ? { ...comment, upVotesBy: [...comment.upVotesBy, action.payload.userId], downVotesBy: comment.downVotesBy.filter((userId) => userId !== action.payload.userId) } : comment) };
+    return {
+      ...threadDetail,
+      comments: threadDetail.comments.map((comment) =>
+        comment.id === action.payload.commentId
+          ? {
+            ...comment,
+            upVotesBy: [...comment.upVotesBy, action.payload.userId],
+            downVotesBy: comment.downVotesBy.filter(
+              (userId) => userId !== action.payload.userId,
+            ),
+          }
+          : comment,
+      ),
+    };
   case ActionType.DOWN_VOTE_COMMENT:
-    return { ...threadDetail, comments: threadDetail.comments.map((comment) => comment.id === action.payload.commentId ? { ...comment, downVotesBy: [...comment.downVotesBy, action.payload.userId], upVotesBy: comment.upVotesBy.filter((userId) => userId !== action.payload.userId) } : comment) };
+    return {
+      ...threadDetail,
+      comments: threadDetail.comments.map((comment) =>
+        comment.id === action.payload.commentId
+          ? {
+            ...comment,
+            downVotesBy: [...comment.downVotesBy, action.payload.userId],
+            upVotesBy: comment.upVotesBy.filter(
+              (userId) => userId !== action.payload.userId,
+            ),
+          }
+          : comment,
+      ),
+    };
   case ActionType.CLEAR_VOTE_COMMENT:
-    return { ...threadDetail, comments: threadDetail.comments.map((comment) => comment.id === action.payload.commentId ? { ...comment, downVotesBy: comment.downVotesBy.filter((userId) => userId !== action.payload.userId), upVotesBy: comment.upVotesBy.filter((userId) => userId !== action.payload.userId) } : comment) };
+    return {
+      ...threadDetail,
+      comments: threadDetail.comments.map((comment) =>
+        comment.id === action.payload.commentId
+          ? {
+            ...comment,
+            downVotesBy: comment.downVotesBy.filter(
+              (userId) => userId !== action.payload.userId,
+            ),
+            upVotesBy: comment.upVotesBy.filter(
+              (userId) => userId !== action.payload.userId,
+            ),
+          }
+          : comment,
+      ),
+    };
   default:
     return threadDetail;
   }

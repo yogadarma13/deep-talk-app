@@ -13,7 +13,9 @@ import { asyncUnsetAuthUser } from './states/authUser/action';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
-  const { authUser = null, isPreload = false } = useSelector((states) => states);
+  const authUser = useSelector((state) => state.authUser);
+  const isPreload = useSelector((state) => state.isPreload);
+
   const dispatch = useDispatch();
   const location = useLocation();
 

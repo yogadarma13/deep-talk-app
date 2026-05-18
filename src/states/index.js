@@ -17,6 +17,10 @@ const store = configureStore({
     leaderboards: leaderboardsReducer,
     isLoading: isLoadingReducer
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      immutableCheck: false,
+    }),
 });
 
 export default store;
