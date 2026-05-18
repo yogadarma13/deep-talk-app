@@ -28,6 +28,7 @@ function LeaderboardsPage() {
             <LeaderboardItem
               key={item.user.id}
               rank={index + 1}
+              avatar={item.user.avatar}
               name={item.user.name}
               score={item.score}
             />
