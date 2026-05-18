@@ -10,6 +10,7 @@ import { asyncPreloadProcess } from './states/isPreload/action';
 import LeaderboardsPage from './pages/LeaderBoardsPage';
 import TopBar from './components/TopBar';
 import { asyncUnsetAuthUser } from './states/authUser/action';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector((states) => states);
@@ -47,15 +48,16 @@ function App() {
 
   return (
     <div className="app-container">
-      <header className='topbar'>
+      <header className="topbar">
         <TopBar pathname={location.pathname} onLogout={onLogout}/>
       </header>
       <main>
         <Routes>
-          <Route path='/' element={<HomePage />}/>
-          <Route path='/addThread' element={<AddThreadPage />}/>
-          <Route path='/threads/:id' element={<DetailPage />}/>
-          <Route path='/leaderboards' element={<LeaderboardsPage />}/>
+          <Route path="/" element={<HomePage />}/>
+          <Route path="/addThread" element={<AddThreadPage />}/>
+          <Route path="/threads/:id" element={<DetailPage />}/>
+          <Route path="/leaderboards" element={<LeaderboardsPage />}/>
+          <Route path="/*" element={<NotFoundPage />}/>
         </Routes>
       </main>
     </div>

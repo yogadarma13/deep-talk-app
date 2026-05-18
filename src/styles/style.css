@@ -891,6 +891,53 @@ body {
   font-weight: 500;
 }
 
+.notfound-container {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.notfound-content {
+  position: relative;
+}
+
+.notfound-number {
+  position: relative;
+  z-index: 1;
+  font-size: 140px;
+  font-weight: bold;
+  line-height: 1;
+  background: linear-gradient(
+    to right,
+    #4f46e5,
+    #6366f1
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.notfound-title {
+  position: relative;
+  z-index: 1;
+  margin-top: 18px;
+  font-size: 42px;
+  color: #111827;
+}
+
+.notfound-description {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  margin-top: 18px;
+  color: #6b7280;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
 @keyframes loadingSpin {
   to {
     transform: rotate(360deg);
@@ -962,5 +1009,17 @@ body {
   .detail-stats,
   .comment-item-stats {
     flex-wrap: wrap;
+  }
+
+  .notfound-number {
+    font-size: 100px;
+  }
+
+  .notfound-title {
+    font-size: 32px;
+  }
+
+  .notfound-description {
+    font-size: 15px;
   }
 }
