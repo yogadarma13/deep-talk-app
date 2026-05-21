@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 import AddThreadPage from './pages/AddThreadPage';
 import DetailPage from './pages/DetailPage';
 import { asyncPreloadProcess } from './states/isPreload/action';
-import LeaderboardsPage from './pages/LeaderBoardsPage';
+import LeaderboardsPage from './pages/LeaderboardsPage';
 import TopBar from './components/TopBar';
 import { asyncUnsetAuthUser } from './states/authUser/action';
 import NotFoundPage from './pages/NotFoundPage';
