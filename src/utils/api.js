@@ -320,7 +320,7 @@ const api = (() => {
     return vote;
   }
 
-  async function getLeaderBoards() {
+  async function getLeaderboards() {
     const response = await fetch(`${BASE_URL}/leaderboards`);
 
     const responseJson = await response.json();
@@ -336,7 +336,24 @@ const api = (() => {
     return leaderboards;
   }
 
-  return { putAccessToken, register, login, getOwnProfile, getAllThreads, getAllUsers, addNewThread, getThreadDetail, addNewComment, upVoteThread, downVoteThread, clearVoteThread, upVoteComment, downVoteComment, clearVoteComment, getLeaderBoards };
+  return {
+    putAccessToken,
+    register,
+    login,
+    getOwnProfile,
+    getAllThreads,
+    getAllUsers,
+    addNewThread,
+    getThreadDetail,
+    addNewComment,
+    upVoteThread,
+    downVoteThread,
+    clearVoteThread,
+    upVoteComment,
+    downVoteComment,
+    clearVoteComment,
+    getLeaderboards
+  };
 })();
 
 export default api;

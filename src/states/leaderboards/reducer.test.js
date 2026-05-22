@@ -4,17 +4,15 @@ import { ActionType } from './action';
 
 describe('leaderboardsReducers function', () => {
   it('should return the initial state when given by unknown action', () => {
-    // arrange
     const initialState = [];
     const action = { type: 'UNKNOWN' };
-    // action
+
     const nextState = leaderboardsReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(initialState);
   });
 
   it('should return all leaderboards when given by RECEIVE_LEADERBOARDS action', () => {
-    // arrange
     const initialState = [];
     const action = {
       type: ActionType.RECEIVE_LEADERBOARDS,
@@ -41,9 +39,9 @@ describe('leaderboardsReducers function', () => {
         ],
       },
     };
-    // action
+
     const nextState = leaderboardsReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(action.payload.leaderboards);
   });
 });

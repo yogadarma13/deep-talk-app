@@ -139,7 +139,11 @@ function asyncDownVoteThread(threadId) {
 export {
   ActionType,
   receiveThreadsActionCreator,
+  addNewThreadActionCreator,
   asyncAddNewThread,
+  upVoteThreadActionCreator,
+  downVoteThreadActionCreator,
+  clearVoteThreadActionCreator,
   asyncUpVoteThread,
   asyncDownVoteThread
 };

@@ -4,17 +4,15 @@ import { ActionType } from './action';
 
 describe('threadDetailReducers function', () => {
   it('should return the initial state when given by unknown action', () => {
-    // arrange
     const initialState = {};
     const action = { type: 'UNKNOWN' };
-    // action
+
     const nextState = threadDetailReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(initialState);
   });
 
   it('should return the threadDetail when given by RECEIVE_THREAD_DETAIL action', () => {
-    // arrange
     const initialState = {};
     const action = {
       type: ActionType.RECEIVE_THREAD_DETAIL,
@@ -49,14 +47,13 @@ describe('threadDetailReducers function', () => {
         },
       },
     };
-    // action
+
     const nextState = threadDetailReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(action.payload.threadDetail);
   });
 
   it('should return null when given by CLEAR_THREAD_DETAIL action', () => {
-    // arrange
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -88,14 +85,13 @@ describe('threadDetailReducers function', () => {
     const action = {
       type: ActionType.CLEAR_THREAD_DETAIL,
     };
-    // action
+
     const nextState = threadDetailReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(null);
   });
 
   it('should return threadDetail with new comment when given by ADD_NEW_COMMENT action', () => {
-    // arrange
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -132,14 +128,13 @@ describe('threadDetailReducers function', () => {
       ...initialState,
       comments: [action.payload.comment, ...initialState.comments],
     };
-    // action
+
     const nextState = threadDetailReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(expected);
   });
 
   it('should return threadDetail with userId on upVotesBy when given by UP_VOTE_THREAD action', () => {
-    // arrange
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -178,14 +173,13 @@ describe('threadDetailReducers function', () => {
       ...initialState,
       upVotesBy: [...initialState.upVotesBy, action.payload.userId],
     };
-    // action
+
     const nextState = threadDetailReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(expected);
   });
 
   it('should return threadDetail with userId on downVotesBy when given by DOWN_VOTE_THREAD action', () => {
-    // arrange
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -224,14 +218,13 @@ describe('threadDetailReducers function', () => {
       ...initialState,
       downVotesBy: [...initialState.downVotesBy, action.payload.userId],
     };
-    // action
+
     const nextState = threadDetailReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(expected);
   });
 
   it('should return threadDetail without userId on upVotesBy and downVotesBy when given by CLEAR_VOTE_THREAD action', () => {
-    // arrange
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -268,14 +261,13 @@ describe('threadDetailReducers function', () => {
       downVotesBy: ['users-4'],
       comments: [],
     };
-    // action
+
     const nextState = threadDetailReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(expected);
   });
 
   it('should return threadDetail with userId on upVotesBy comment-1 when given by UP_VOTE_COMMENT action', () => {
-    // arrange
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -328,14 +320,13 @@ describe('threadDetailReducers function', () => {
         },
       ],
     };
-    // action
+
     const nextState = threadDetailReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(expected);
   });
 
   it('should return threadDetail with userId on downVotesBy comment-1 when given by DOWN_VOTE_COMMENT action', () => {
-    // arrange
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -388,14 +379,13 @@ describe('threadDetailReducers function', () => {
         },
       ],
     };
-    // action
+
     const nextState = threadDetailReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(expected);
   });
 
   it('should return threadDetail without userId on upVotesBy and downVotesBy comment-1 when given by CLEAR_VOTE_COMMENT action', () => {
-    // arrange
     const initialState = {
       id: 'thread-1',
       title: 'Thread Pertama',
@@ -448,9 +438,9 @@ describe('threadDetailReducers function', () => {
         },
       ],
     };
-    // action
+
     const nextState = threadDetailReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(expected);
   });
 });

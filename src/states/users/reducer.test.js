@@ -4,17 +4,15 @@ import { ActionType } from './action';
 
 describe('usersReducers function', () => {
   it('should return the initial state when given by unknown action', () => {
-    // arrange
     const initialState = [];
     const action = { type: 'UNKNOWN' };
-    // action
+
     const nextState = usersReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(initialState);
   });
 
   it('should return all users when given by RECEIVE_USERS action', () => {
-    // arrange
     const initialState = [];
     const action = {
       type: ActionType.RECEIVE_USERS,
@@ -35,9 +33,9 @@ describe('usersReducers function', () => {
         ],
       },
     };
-    // action
+
     const nextState = usersReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(action.payload.users);
   });
 });

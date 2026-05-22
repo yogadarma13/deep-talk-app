@@ -251,6 +251,15 @@ function asyncDownVoteComment(commentId) {
 
 export {
   ActionType,
+  receiveThreadDetailActionCreator,
+  clearThreadDetailActionCreator,
+  addNewCommentActionCreator,
+  upVoteThreadActionCreator,
+  downVoteThreadActionCreator,
+  clearVoteThreadActionCreator,
+  upVoteCommentActionCreator,
+  downVoteCommentActionCreator,
+  clearVoteCommentActionCreator,
   asyncReceiveThreadDetail,
   asyncAddNewComment,
   asyncUpVoteThread,

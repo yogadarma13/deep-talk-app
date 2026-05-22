@@ -4,17 +4,15 @@ import { ActionType } from './action';
 
 describe('threadsReducers function', () => {
   it('should return the initial state when given by unknown action', () => {
-    // arrange
     const initialState = [];
     const action = { type: 'UNKNOWN' };
-    // action
+
     const nextState = threadsReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(initialState);
   });
 
   it('should return the threads when given by RECEIVE_THREADS action', () => {
-    // arrange
     const initialState = [];
     const action = {
       type: ActionType.RECEIVE_THREADS,
@@ -45,14 +43,13 @@ describe('threadsReducers function', () => {
         ],
       },
     };
-    // action
+
     const nextState = threadsReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(action.payload.threads);
   });
 
   it('should return the threads with new thread when given by ADD_NEW_THREAD action', () => {
-    // arrange
     const initialState = [
       {
         id: 'thread-1',
@@ -84,14 +81,13 @@ describe('threadsReducers function', () => {
         ],
       },
     };
-    // action
+
     const nextState = threadsReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual([action.payload.thread, ...initialState]);
   });
 
   it('should return the threads include userId on upVotesBy thread-1 when given by UP_VOTE_THREAD_ITEM action', () => {
-    // arrange
     const initialState = [
       {
         id: 'thread-1',
@@ -147,14 +143,13 @@ describe('threadsReducers function', () => {
         totalComments: 0,
       },
     ];
-    // action
+
     const nextState = threadsReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(expected);
   });
 
   it('should return the threads include userId on downVotesBy thread-2 when given by DOWN_VOTE_THREAD_ITEM action', () => {
-    // arrange
     const initialState = [
       {
         id: 'thread-1',
@@ -210,14 +205,13 @@ describe('threadsReducers function', () => {
         totalComments: 0,
       },
     ];
-    // action
+
     const nextState = threadsReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(expected);
   });
 
   it('should return the threads without userId on upVotesBy and downVotesBy when given by CLEAR_VOTE_THREAD_ITEM action', () => {
-    // arrange
     const initialState = [
       {
         id: 'thread-1',
@@ -273,9 +267,9 @@ describe('threadsReducers function', () => {
         totalComments: 0,
       },
     ];
-    // action
+
     const nextState = threadsReducer(initialState, action);
-    // assert
+
     expect(nextState).toEqual(expected);
   });
 });
