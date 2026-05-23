@@ -17,19 +17,30 @@ function CommentItem({
   return (
     <div className="comment-item-card">
       <div className="comment-item-owner">
-        <img src={avatar} alt={name} className="comment-item-avatar" />
+        <img
+          data-testid="avatar-comment"
+          src={avatar}
+          alt={name}
+          className="comment-item-avatar"
+        />
 
         <div>
-          <h3 className="comment-item-name">{name}</h3>
-          <p className="comment-item-date">{showFormattedDate(createdAt)}</p>
+          <h3 data-testid="name-comment" className="comment-item-name">
+            {name}
+          </h3>
+          <p data-testid="date-comment" className="comment-item-date">
+            {showFormattedDate(createdAt)}
+          </p>
         </div>
       </div>
 
-      <div className="comment-item-content">{parser(content)}</div>
+      <div data-testid="content-comment" className="comment-item-content">
+        {parser(content)}
+      </div>
 
       <div className="comment-item-stats">
-        <div className="comment-item-stat">
-          <button onClick={handleUpVote}>
+        <div data-testid="upVotes-comment" className="comment-item-stat">
+          <button data-testid="upVotes-comment-button" onClick={handleUpVote}>
             {upVotesBy.includes(userId) ? (
               <BiSolidLike className="comment-item-stat-active" />
             ) : (
@@ -38,8 +49,8 @@ function CommentItem({
           </button>
           {upVotesBy.length}
         </div>
-        <div className="comment-item-stat">
-          <button onClick={handleDownVote}>
+        <div data-testid="downVotes-comment" className="comment-item-stat">
+          <button data-testid="downVotes-comment-button" onClick={handleDownVote}>
             {downVotesBy.includes(userId) ? (
               <BiSolidDislike className="comment-item-stat-active" />
             ) : (

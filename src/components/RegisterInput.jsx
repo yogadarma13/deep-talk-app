@@ -15,14 +15,22 @@ function RegisterInput({ isLoading, handleRegister }) {
       <h1 className="register-title">Register Account</h1>
       <p className="register-subtitle">Please register to create account</p>
       <div className="register-form">
-        <FieldInput label="Nama" type="text" value={name} handleInput={setName} />
         <FieldInput
+          data-testid="name-input"
+          label="Nama"
+          type="text"
+          value={name}
+          handleInput={setName}
+        />
+        <FieldInput
+          data-testid="email-input"
           label="Email"
           type="email"
           value={email}
           handleInput={setEmail}
         />
         <FieldInput
+          data-testid="password-input"
           label="Password"
           type="password"
           value={password}
@@ -32,6 +40,7 @@ function RegisterInput({ isLoading, handleRegister }) {
           <LoadingButton />
         ) : (
           <button
+            data-testid="register-button"
             className="register-button"
             onClick={() => handleRegister({ name, email, password })}
           >

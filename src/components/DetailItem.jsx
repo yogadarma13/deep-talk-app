@@ -19,21 +19,36 @@ function DetailItem({
 }) {
   return (
     <div className="detail-card">
-      <div className="detail-category">{category}</div>
+      <div data-testid="category-detail" className="detail-category">
+        #{category}
+      </div>
 
-      <h1 className="detail-title">{title}</h1>
+      <h1 data-testid="title-detail" className="detail-title">
+        {title}
+      </h1>
 
       <div className="detail-owner">
-        <img src={ownerAvatar} alt={ownerName} className="detail-owner-avatar" />
+        <img
+          data-testid="owner-avatar-detail"
+          src={ownerAvatar}
+          alt={ownerName}
+          className="detail-owner-avatar"
+        />
 
         <div>
-          <h3 className="detail-owner-name">{ownerName}</h3>
+          <h3 data-testid="owner-name-detail" className="detail-owner-name">
+            {ownerName}
+          </h3>
 
-          <p className="detail-date">{showFormattedDate(createdAt)}</p>
+          <p data-testid="date-detail" className="detail-date">
+            {showFormattedDate(createdAt)}
+          </p>
         </div>
       </div>
 
-      <div className="detail-body">{parser(body)}</div>
+      <div data-testid="body-detail" className="detail-body">
+        {parser(body)}
+      </div>
 
       <ActionItems
         userId={userId}

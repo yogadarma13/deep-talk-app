@@ -16,12 +16,14 @@ function LoginInput({ isloading, handleLogin }) {
 
       <div className="login-form">
         <FieldInput
+          data-testid="email-input"
           label="Email"
           type="email"
           value={email}
           handleInput={setEmail}
         />
         <FieldInput
+          data-testid="password-input"
           label="Password"
           type="password"
           value={password}
@@ -31,6 +33,7 @@ function LoginInput({ isloading, handleLogin }) {
           <LoadingButton />
         ) : (
           <button
+            data-testId="login-button"
             className="login-button"
             onClick={() => handleLogin({ email, password })}
           >

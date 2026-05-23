@@ -21,6 +21,7 @@ function CommentInput({ isLoading, handleAddComment }) {
           Add Comment
       </h2>
       <div
+        data-testid="comment-input"
         ref={commentRef}
         className="comment-form-card-content"
         data-placeholder="Write your comment..."
@@ -30,7 +31,10 @@ function CommentInput({ isLoading, handleAddComment }) {
       {isLoading ? (
         <LoadingButton />
       ) : (
-        <button onClick={onSubmitComment}>Post Comment</button>
+        <button
+          data-testid="add-comment-button"
+          onClick={onSubmitComment}>Post Comment
+        </button>
       )}
     </div>
   );

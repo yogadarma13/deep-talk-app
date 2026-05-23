@@ -36,18 +36,29 @@ function ThreadItem({
       <div className="thread-item-card">
         <div className="thread-item-owner">
           <img
+            data-testid="ownerAvatar-thread-item"
             src={user.avatar}
             alt={user.name}
             className="thread-item-owner-image"
           />
           <div>
-            <h3 className="thread-item-owner-name">{user.name}</h3>
-            <p className="thread-item-date">{showFormattedDate(createdAt)}</p>
+            <h3 data-testid="ownerName-thread-item" className="thread-item-owner-name">
+              {user.name}
+            </h3>
+            <p data-testid="date-thread-item" className="thread-item-date">
+              {showFormattedDate(createdAt)}
+            </p>
           </div>
         </div>
-        <div className="thread-item-category">#{category}</div>
-        <h2 className="thread-item-title">{title}</h2>
-        <div className="thread-item-body">{parser(body)}</div>
+        <div data-testid="category-thread-item" className="thread-item-category">
+          #{category}
+        </div>
+        <h2 data-testid="title-thread-item" className="thread-item-title">
+          {title}
+        </h2>
+        <div data-testid="body-thread-item" className="thread-item-body">
+          {parser(body)}
+        </div>
         <ActionItems
           userId={userId}
           totalComments={totalComments}

@@ -12,12 +12,12 @@ function ActionItems({
 }) {
   return (
     <div className="action-items">
-      <div className="action-item">
+      <div data-testid="comments-item" className="action-item">
         <FaRegComments className="action-item-comment" />
         {totalComments}
       </div>
-      <div className="action-item">
-        <button onClick={upVoteHandler}>
+      <div data-testid="upVotesBy-item" className="action-item">
+        <button data-testid="upVotesBy-button" onClick={upVoteHandler}>
           {upVotesBy.includes(userId) ? (
             <BiSolidLike className="action-item-active" />
           ) : (
@@ -27,8 +27,8 @@ function ActionItems({
         {upVotesBy.length}
       </div>
 
-      <div className="action-item">
-        <button onClick={downVoteHandler}>
+      <div data-testid="downVotesBy-item" className="action-item">
+        <button data-testid="downVotesBy-button" onClick={downVoteHandler}>
           {downVotesBy.includes(userId) ? (
             <BiSolidDislike className="action-item-active" />
           ) : (
