@@ -1,3 +1,11 @@
+/**
+ * skenario test
+ *
+ * - asyncPreloadProcess thunk
+ *   - should dispatch action correctly when data fetching success
+ *   - should dispatch action and call alert correctly when data fetching failed
+ */
+
 import { describe, expect, it, vi } from 'vitest';
 import api from '../../utils/api';
 import { asyncPreloadProcess, setIsPreloadActionCreator } from './action';

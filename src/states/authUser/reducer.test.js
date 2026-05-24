@@ -1,3 +1,12 @@
+/**
+ * skenario test for authUserReducers
+ *
+ * - authUserReducers function
+ *   - should return the initial state when given by unknown action
+ *   - should return the authUser when given by SET_AUTH_USER action
+ *   - should return null when given by UNSET_AUTH_USER action
+ */
+
 import { describe, expect, it } from 'vitest';
 import authUserReducer from './reducer';
 import { ActionType } from './action';

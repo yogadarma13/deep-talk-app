@@ -1,3 +1,11 @@
+/**
+ * skenario test for usersReducers
+ *
+ * - usersReducers function
+ *   - should return the initial state when given by unknown action
+ *   - should return all users when given by RECEIVE_USERS action
+ */
+
 import { describe, expect, it } from 'vitest';
 import usersReducer from './reducer';
 import { ActionType } from './action';

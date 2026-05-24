@@ -1,3 +1,11 @@
+/**
+ * skenario test for isPreloadReducers
+ *
+ * - isPreloadReducers function
+ *   - should return the initial state when given by unknown action
+ *   - should return false when given by SET_IS_PRELOAD action
+ */
+
 import { describe, expect, it } from 'vitest';
 import isPreloadReducer from './reducer';
 import { ActionType } from './action';

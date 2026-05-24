@@ -1,3 +1,14 @@
+/**
+ * skenario testing
+ *
+ * - RegisterInput component
+ *   - should handle name typing correctly
+ *   - should handle email typing correctly
+ *   - should handle password typing correctly
+ *   - should call register function when login button is clicked
+ *   - should redirect to login page correctly
+ */
+
 import React from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
@@ -8,7 +19,7 @@ import RegisterInput from './RegisterInput';
 
 expect.extend(matchers);
 
-describe('LoginInput component', () => {
+describe('RegisterInput component', () => {
   const name = 'Tes123';
   const email = 'tes@gmail.com';
   const password = '123456';

@@ -1,3 +1,12 @@
+/**
+ * skenario testing
+ *
+ * - CommentItem component
+ *   - should content on component correct
+ *   - should call up vote function when up vote button is clicked
+ *   - should call down vote function when down vote button is clicked
+ */
+
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';

@@ -1,3 +1,15 @@
+/**
+ * skenario test
+ *
+ * - asyncRegisterUser thunk
+ *   - should dispatch action correctly when register success
+ *   - should dispatch action and call alert correctly when register failed
+ *   - should dispatch action correctly when login success
+ *   - should dispatch action and call alert correctly when login failed
+ * - asyncUnsetAuthUser thunk
+ *   - should dispatch action correctly when logout
+ */
+
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import api from '../../utils/api';
 import {
@@ -50,7 +62,7 @@ describe('asyncRegisterUser thunk', () => {
     );
   });
 
-  it('should dispatch action correctly when register failed', async () => {
+  it('should dispatch action and call alert correctly when register failed', async () => {
     api.register = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -95,7 +107,7 @@ describe('asyncLoginUser thunk', () => {
     expect(window.alert).toHaveBeenCalledWith('Welcome, John Doe');
   });
 
-  it('should dispatch action correctly when login failed', async () => {
+  it('should dispatch action and call alert correctly when login failed', async () => {
     api.login = () => Promise.reject(fakeErrorResponse);
     api.getOwnProfile = () => Promise.reject(fakeErrorResponse);
 

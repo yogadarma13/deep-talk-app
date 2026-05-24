@@ -1,3 +1,19 @@
+/**
+ * skenario test for threadDetailReducers
+ *
+ * - threadDetailReducers function
+ *   - should return the initial state when given by unknown action
+ *   - should return the threadDetail when given by RECEIVE_THREAD_DETAIL action
+ *   - should return null when given by CLEAR_THREAD_DETAIL action
+ *   - should return threadDetail with new comment when given by ADD_NEW_COMMENT action
+ *   - should return threadDetail with userId on upVotesBy when given by UP_VOTE_THREAD action
+ *   - should return threadDetail with userId on downVotesBy when given by DOWN_VOTE_THREAD action
+ *   - should return threadDetail without userId on upVotesBy and downVotesBy when given by CLEAR_VOTE_THREAD action
+ *   - should return threadDetail with userId on upVotesBy comment-1 when given by UP_VOTE_COMMENT action
+ *   - should return threadDetail with userId on downVotesBy comment-1 when given by DOWN_VOTE_COMMENT action
+ *   - should return threadDetail without userId on upVotesBy and downVotesBy comment-1 when given by CLEAR_VOTE_COMMENT action
+ */
+
 import { describe, expect, it } from 'vitest';
 import threadDetailReducer from './reducer';
 import { ActionType } from './action';

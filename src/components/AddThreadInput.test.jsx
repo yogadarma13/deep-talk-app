@@ -1,3 +1,13 @@
+/**
+ * skenario testing
+ *
+ * - AddThreadInput component
+ *   - should handle title typing correctly
+ *   - should handle category typing correctly
+ *   - should handle body typing correctly
+ *   - should call add thread function when add thread button is clicked
+ */
+
 import React from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import matchers from '@testing-library/jest-dom/matchers';

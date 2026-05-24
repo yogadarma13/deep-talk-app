@@ -1,3 +1,11 @@
+/**
+ * skenario test for leaderboardsReducers
+ *
+ * - leaderboardsReducers function
+ *   - should return the initial state when given by unknown action
+ *   - should return all leaderboards when given by RECEIVE_LEADERBOARDS action
+ */
+
 import { describe, expect, it } from 'vitest';
 import leaderboardsReducer from './reducer';
 import { ActionType } from './action';

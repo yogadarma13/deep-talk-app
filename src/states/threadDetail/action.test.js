@@ -1,3 +1,43 @@
+/**
+ * skenario test
+ *
+ * - asyncReceiveThreadDetail thunk
+ *   - should dispatch action correctly when data fetching success
+ *   - should dispatch action and call alert correctly when data fetching failed
+ *
+ * - asyncAddNewComment thunk
+ *   - should dispatch action correctly when add new comment success
+ *   - should dispatch action and call alert correctly when add new comment failed
+ *
+ * - asyncUpVoteThread thunk
+ *   - should dispatch action correctly when up vote thread success and userId is not exists
+ *   - should dispatch action correctly when up vote thread success and userId is exists
+ *   - should dispatch action and call alert correctly when up vote thread error and userId is not exists
+ *   - should dispatch action and call alert correctly when up vote thread error and userId is exists
+ *   - should dispatch action and call alert correctly when up vote thread error and userId is exists on downVotesBy
+ *
+ * - asyncDownVoteThread thunk
+ *   - should dispatch action correctly when down vote thread success and userId is not exists
+ *   - should dispatch action correctly when down vote thread success and userId is exists
+ *   - should dispatch action and call alert correctly when down vote thread error and userId is not exists
+ *   - should dispatch action and call alert correctly when down vote thread error and userId is exists
+ *   - should dispatch action and call alert correctly when down vote thread error and userId is exists on upVotesBy
+ *
+ * - asyncUpCommentThread thunk
+ *   - should dispatch action correctly when up vote comment success and userId is not exists
+ *   - should dispatch action correctly when up vote comment success and userId is exists
+ *   - should dispatch action and call alert correctly when up vote comment error and userId is not exists
+ *   - should dispatch action and call alert correctly when up vote comment error and userId is exists
+ *   - should dispatch action and call alert correctly when up vote comment error and userId is exists on downVotesBy
+ *
+ * - asyncDownVoteComment thunk
+ *   - should dispatch action correctly when down vote comment success and userId is not exists
+ *   - should dispatch action correctly when down vote comment success and userId is exists
+ *   - should dispatch action and call alert correctly when down vote comment error and userId is not exists
+ *   - should dispatch action and call alert correctly when down vote comment error and userId is exists
+ *   - should dispatch action and call alert correctly when down vote comment error and userId is exists on upVotesBy
+ */
+
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import api from '../../utils/api';
 import {
@@ -156,7 +196,7 @@ describe('asyncReceiveThreadDetail thunk', () => {
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
   });
 
-  it('should dispatch action correctly when data fetching failed', async () => {
+  it('should dispatch action and call alert correctly when data fetching failed', async () => {
     api.getThreadDetail = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -200,7 +240,7 @@ describe('asyncAddNewComment thunk', () => {
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
   });
 
-  it('should dispatch action correctly when add new comment failed', async () => {
+  it('should dispatch action and call alert correctly when add new comment failed', async () => {
     api.addNewComment = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -258,7 +298,7 @@ describe('asyncUpVoteThread thunk', () => {
     );
   });
 
-  it('should dispatch action correctly when up vote thread error and userId is not exists', async () => {
+  it('should dispatch action and call alert correctly when up vote thread error and userId is not exists', async () => {
     api.upVoteThread = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -278,7 +318,7 @@ describe('asyncUpVoteThread thunk', () => {
     expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
   });
 
-  it('should dispatch action correctly when up vote thread error and userId is exists', async () => {
+  it('should dispatch action and call alert correctly when up vote thread error and userId is exists', async () => {
     api.clearVoteThread = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -298,7 +338,7 @@ describe('asyncUpVoteThread thunk', () => {
     expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
   });
 
-  it('should dispatch action correctly when up vote thread error and userId is exists on downVotesBy', async () => {
+  it('should dispatch action and call alert correctly when up vote thread error and userId is exists on downVotesBy', async () => {
     api.upVoteThread = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -359,7 +399,7 @@ describe('asyncDownVoteThread thunk', () => {
     );
   });
 
-  it('should dispatch action correctly when down vote thread error and userId is not exists', async () => {
+  it('should dispatch action and call alert correctly when down vote thread error and userId is not exists', async () => {
     api.downVoteThread = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -379,7 +419,7 @@ describe('asyncDownVoteThread thunk', () => {
     expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
   });
 
-  it('should dispatch action correctly when down vote thread error and userId is exists', async () => {
+  it('should dispatch action and call alert correctly when down vote thread error and userId is exists', async () => {
     api.clearVoteThread = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -399,7 +439,7 @@ describe('asyncDownVoteThread thunk', () => {
     expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
   });
 
-  it('should dispatch action correctly when down vote thread error and userId is exists on upVotesBy', async () => {
+  it('should dispatch action and call alert correctly when down vote thread error and userId is exists on upVotesBy', async () => {
     api.downVoteThread = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -460,7 +500,7 @@ describe('asyncUpCommentThread thunk', () => {
     );
   });
 
-  it('should dispatch action correctly when up vote comment error and userId is not exists', async () => {
+  it('should dispatch action and call alert correctly when up vote comment error and userId is not exists', async () => {
     api.upVoteComment = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -480,7 +520,7 @@ describe('asyncUpCommentThread thunk', () => {
     expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
   });
 
-  it('should dispatch action correctly when up vote comment error and userId is exists', async () => {
+  it('should dispatch action and call alert correctly when up vote comment error and userId is exists', async () => {
     api.clearVoteComment = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -500,7 +540,7 @@ describe('asyncUpCommentThread thunk', () => {
     expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
   });
 
-  it('should dispatch action correctly when up vote comment error and userId is exists on downVotesBy', async () => {
+  it('should dispatch action and call alert correctly when up vote comment error and userId is exists on downVotesBy', async () => {
     api.upVoteComment = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -561,7 +601,7 @@ describe('asyncDownVoteComment thunk', () => {
     );
   });
 
-  it('should dispatch action correctly when down vote comment error and userId is not exists', async () => {
+  it('should dispatch action and call alert correctly when down vote comment error and userId is not exists', async () => {
     api.downVoteComment = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -581,7 +621,7 @@ describe('asyncDownVoteComment thunk', () => {
     expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
   });
 
-  it('should dispatch action correctly when down vote comment error and userId is exists', async () => {
+  it('should dispatch action and call alert correctly when down vote comment error and userId is exists', async () => {
     api.clearVoteComment = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();
@@ -601,7 +641,7 @@ describe('asyncDownVoteComment thunk', () => {
     expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
   });
 
-  it('should dispatch action correctly when down vote comment error and userId is exists on upVotesBy', async () => {
+  it('should dispatch action and call alert correctly when down vote comment error and userId is exists on upVotesBy', async () => {
     api.downVoteComment = () => Promise.reject(fakeErrorResponse);
 
     const dispatch = vi.fn();

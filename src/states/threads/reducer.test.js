@@ -1,3 +1,15 @@
+/**
+ * skenario test for threadsReducers
+ *
+ * - threadsReducers function
+ *   - should return the initial state when given by unknown action
+ *   - should return the threads when given by RECEIVE_THREADS action
+ *   - should return the threads with new thread when given by ADD_NEW_THREAD action
+ *   - should return the threads include userId on upVotesBy thread-1 when given by UP_VOTE_THREAD_ITEM action
+ *   - should return the threads include userId on downVotesBy thread-2 when given by DOWN_VOTE_THREAD_ITEM action
+ *   - should return the threads without userId on upVotesBy and downVotesBy when given by CLEAR_VOTE_THREAD_ITEM action
+ */
+
 import { describe, expect, it } from 'vitest';
 import threadsReducer from './reducer';
 import { ActionType } from './action';

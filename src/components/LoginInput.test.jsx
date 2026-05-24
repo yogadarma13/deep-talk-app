@@ -1,3 +1,13 @@
+/**
+ * skenario testing
+ *
+ * - LoginInput component
+ *   - should handle email typing correctly
+ *   - should handle password typing correctly
+ *   - should call login function when login button is clicked
+ *   - should redirect to register page correctly
+ */
+
 import React from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import LoginInput from './LoginInput';
