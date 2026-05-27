@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function TopBar({ pathname, onLogout }) {
   return (
-    <>
+    <div className="topbar">
       <div>
         <Link to={'/'} className="topbar-app-name-link">
           <h1 className="topbar-app-name">Deep Talk</h1>
@@ -26,7 +26,7 @@ function TopBar({ pathname, onLogout }) {
           Logout
         </Link>
       </div>
-    </>
+    </div>
   );
 }
 

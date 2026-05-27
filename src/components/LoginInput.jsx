@@ -4,7 +4,7 @@ import useInput from '../hooks/useInput';
 import { Link } from 'react-router-dom';
 import LoadingButton from './LoadingButton';
 
-function LoginInput({ isloading, handleLogin }) {
+function LoginInput({ isLoading, handleLogin }) {
   const [email, setEmail] = useInput('');
   const [password, setPassword] = useInput('');
 
@@ -29,7 +29,7 @@ function LoginInput({ isloading, handleLogin }) {
           value={password}
           handleInput={setPassword}
         />
-        {isloading ? (
+        {isLoading ? (
           <LoadingButton />
         ) : (
           <button

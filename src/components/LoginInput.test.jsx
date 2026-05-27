@@ -29,7 +29,7 @@ describe('LoginInput component', () => {
   it('should handle email typing correctly', async () => {
     render(
       <MemoryRouter>
-        <LoginInput isloading={false} handleLogin={() => {}} />
+        <LoginInput isLoading={false} handleLogin={() => {}} />
       </MemoryRouter>,
     );
     const emailInput = screen.getByTestId('email-input');
@@ -42,7 +42,7 @@ describe('LoginInput component', () => {
   it('should handle password typing correctly', async () => {
     render(
       <MemoryRouter>
-        <LoginInput isloading={false} handleLogin={() => {}} />
+        <LoginInput isLoading={false} handleLogin={() => {}} />
       </MemoryRouter>,
     );
     const passwordInput = screen.getByTestId('password-input');
@@ -56,7 +56,7 @@ describe('LoginInput component', () => {
     const mockLogin = vi.fn();
     render(
       <MemoryRouter>
-        <LoginInput isloading={false} handleLogin={mockLogin} />
+        <LoginInput isLoading={false} handleLogin={mockLogin} />
       </MemoryRouter>,
     );
     const emailInput = screen.getByTestId('email-input');
@@ -76,7 +76,7 @@ describe('LoginInput component', () => {
   it('should redirect to register page correctly', () => {
     render(
       <MemoryRouter>
-        <LoginInput isloading={false} handleLogin={() => {}} />
+        <LoginInput isLoading={false} handleLogin={() => {}} />
       </MemoryRouter>
     );
 

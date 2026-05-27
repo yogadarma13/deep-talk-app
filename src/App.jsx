@@ -50,7 +50,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <header className="topbar">
+      <header>
         <TopBar pathname={location.pathname} onLogout={onLogout}/>
       </header>
       <main>
