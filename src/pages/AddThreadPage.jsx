@@ -10,10 +10,6 @@ function AddThreadPage() {
   const dispatch = useDispatch();
 
   const onAddThread = ({ title, body, category }) => {
-    if (title === '' || category === '' || body === '') {
-      alert('All fields must be filled in');
-      return;
-    }
     dispatch(asyncAddNewThread({ title, body, category, navigate }));
   };
 

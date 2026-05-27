@@ -9,6 +9,7 @@
     "lint": "eslint ./src",
     "preview": "vite preview",
     "test": "vitest",
+    "e2e": "cypress run",
     "ci:test": "vitest --no-watch && start-server-and-test dev http-get://0.0.0.0:5173 e2e",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -35,8 +36,10 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "cypress": "^15.16.0",
     "eslint": "^9.39.4",
     "eslint-config-dicodingacademy": "^0.9.5",
+    "eslint-plugin-cypress": "^6.4.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-storybook": "^10.4.1",
     "globals": "^17.6.0",
