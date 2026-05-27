@@ -38,7 +38,7 @@ function LoginInput({ isLoading, handleLogin }) {
             className="login-button"
             onClick={() => handleLogin({ email, password })}
           >
-            Masuk
+            Login
           </button>
         )}
       </div>

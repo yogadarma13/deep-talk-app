@@ -5,6 +5,7 @@ import js from '@eslint/js';
 import globals from 'globals';
 import pluginReact from 'eslint-plugin-react';
 import { defineConfig } from 'eslint/config';
+import pluginCypress from 'eslint-plugin-cypress'
 import daStyle from 'eslint-config-dicodingacademy';
 
 export default defineConfig([{
@@ -21,7 +22,11 @@ export default defineConfig([{
       version: 'detect',
     },
   },
-}, pluginReact.configs.flat.recommended, daStyle, {
+}, 
+pluginReact.configs.flat.recommended, 
+pluginCypress.configs.recommended,
+daStyle,
+{
   rules: {
     'react/prop-types': 'off'
   }

@@ -18,7 +18,7 @@ function RegisterInput({ isLoading, handleRegister }) {
       <div className="register-form">
         <FieldInput
           data-testid="name-input"
-          label="Nama"
+          label="Name"
           type="text"
           value={name}
           handleInput={setName}
@@ -45,7 +45,7 @@ function RegisterInput({ isLoading, handleRegister }) {
             className="register-button"
             onClick={() => handleRegister({ name, email, password })}
           >
-            Daftar
+            Register
           </button>
         )}
       </div>
