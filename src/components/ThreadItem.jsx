@@ -3,6 +3,7 @@ import parser from 'html-react-parser';
 import { Link } from 'react-router-dom';
 import { showFormattedDate } from '../utils';
 import ActionItems from './ActionItems';
+import PropTypes from 'prop-types';
 
 function ThreadItem({
   userId,
@@ -71,5 +72,37 @@ function ThreadItem({
     </Link>
   );
 }
+
+ThreadItem.propTypes = {
+  /** User ID for handle up vote and down vote comment */
+  userId: PropTypes.string.isRequired,
+  /** The ID of Thread */
+  id: PropTypes.string.isRequired,
+  /** The title of Thread */
+  title: PropTypes.string.isRequired,
+  /** The date of Thread */
+  createdAt: PropTypes.string.isRequired,
+  /** The content of Thread */
+  body: PropTypes.string.isRequired,
+  /** The category of Thread */
+  category: PropTypes.string.isRequired,
+  /** The total commment of Thread */
+  totalComments: PropTypes.number.isRequired,
+  /** The list of up vote to show numbers of up vote comment */
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /** The list of down vote to show numbers of down vote comment */
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /** The owner of thread */
+  user: PropTypes.shape(
+    {
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired
+    }
+  ).isRequired,
+  /** The function to handle up vote comment */
+  handleUpVote: PropTypes.func.isRequired,
+  /** The function to handle down vote comment */
+  handleDownVote: PropTypes.func.isRequired,
+};
 
 export default ThreadItem;

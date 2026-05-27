@@ -13,7 +13,7 @@ function LoginPage() {
 
   return (
     <div className="login-page__main">
-      <LoginInput isloading={isLoading} handleLogin={onLogin} />
+      <LoginInput isLoading={isLoading} handleLogin={onLogin} />
     </div>
   );
 }
