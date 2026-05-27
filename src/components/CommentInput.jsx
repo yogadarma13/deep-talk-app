@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import useContentEditable from '../hooks/useContentEditable';
 import LoadingButton from './LoadingButton';
+import PropTypes from 'prop-types';
 
 function CommentInput({ isLoading, handleAddComment }) {
   const [comment, handleCommentValue, setComment] = useContentEditable('');
@@ -39,5 +40,12 @@ function CommentInput({ isLoading, handleAddComment }) {
     </div>
   );
 }
+
+CommentInput.propTypes = {
+  /** Handle visibility loading indicator */
+  isLoading: PropTypes.bool.isRequired,
+  /** The function for add comment */
+  handleAddComment: PropTypes.func.isRequired
+};
 
 export default CommentInput;

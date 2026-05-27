@@ -3,6 +3,7 @@ import LeaderboardItem from '../components/LeaderboardItem';
 export default {
   title: 'LeaderboardItem',
   component: LeaderboardItem,
+  tags: ['autodocs'],
 };
 
 export const Default = {

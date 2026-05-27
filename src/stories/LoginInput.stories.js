@@ -4,6 +4,7 @@ import LoginInput from '../components/LoginInput';
 export default {
   title: 'LoginInput',
   component: LoginInput,
+  tags: ['autodocs'],
   args: {
     handleLogin: fn(),
   },

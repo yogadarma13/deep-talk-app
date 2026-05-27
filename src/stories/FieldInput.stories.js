@@ -4,6 +4,7 @@ import FieldInput from '../components/FieldInput';
 export default {
   title: 'FieldInput',
   component: FieldInput,
+  tags: ['autodocs'],
   args: {
     handleInput: fn(),
   },

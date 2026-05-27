@@ -4,6 +4,7 @@ import RegisterInput from '../components/RegisterInput';
 export default {
   title: 'RegisterInput',
   component: RegisterInput,
+  tags: ['autodocs'],
   args: {
     handleRegister: fn(),
   },

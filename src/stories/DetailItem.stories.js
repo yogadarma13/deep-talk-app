@@ -4,6 +4,7 @@ import DetailItem from '../components/DetailItem';
 export default {
   title: 'DetailItem',
   component: DetailItem,
+  tags: ['autodocs'],
   args: {
     handleUpVote: fn(),
     handleDownVote: fn(),

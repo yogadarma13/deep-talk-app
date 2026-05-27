@@ -2,6 +2,7 @@ import React from 'react';
 import parser from 'html-react-parser';
 import { showFormattedDate } from '../utils';
 import { BiLike, BiDislike, BiSolidLike, BiSolidDislike } from 'react-icons/bi';
+import PropTypes from 'prop-types';
 
 function CommentItem({
   userId,
@@ -63,5 +64,26 @@ function CommentItem({
     </div>
   );
 }
+
+CommentItem.propTypes = {
+  /** User ID for handle Up vote and Down vote comment */
+  userId: PropTypes.string.isRequired,
+  /** The name of Comment */
+  name: PropTypes.string.isRequired,
+  /** The avatar image of Comment */
+  avatar: PropTypes.string.isRequired,
+  /** The content of Comment */
+  content: PropTypes.string.isRequired,
+  /** The date of Comment */
+  createdAt: PropTypes.string.isRequired,
+  /** The list of up vote to show numbers of up vote comment */
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /** The list of down vote to show numbers of down vote comment */
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /** The function to handle up vote comment */
+  handleUpVote: PropTypes.func.isRequired,
+  /** The function to handle down vote comment */
+  handleDownVote: PropTypes.func.isRequired,
+};
 
 export default CommentItem;

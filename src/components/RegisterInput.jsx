@@ -3,6 +3,7 @@ import useInput from '../hooks/useInput';
 import FieldInput from './FieldInput';
 import { Link } from 'react-router-dom';
 import LoadingButton from './LoadingButton';
+import PropTypes from 'prop-types';
 
 function RegisterInput({ isLoading, handleRegister }) {
   const [name, setName] = useInput('');
@@ -54,5 +55,12 @@ function RegisterInput({ isLoading, handleRegister }) {
     </div>
   );
 }
+
+RegisterInput.propTypes = {
+  /** Handle visibility loading indicator */
+  isLoading: PropTypes.bool.isRequired,
+  /** The function for register */
+  handleRegister: PropTypes.func.isRequired
+};
 
 export default RegisterInput;

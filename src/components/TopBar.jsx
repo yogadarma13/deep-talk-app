@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -29,5 +30,12 @@ function TopBar({ pathname, onLogout }) {
     </div>
   );
 }
+
+TopBar.propTypes = {
+  /** Pathname for handle visibility of Add Thread Button (`/addThread` for hide Add Thread Button) */
+  pathname: PropTypes.string.isRequired,
+  /** The function for logout */
+  onLogout: PropTypes.func.isRequired
+};
 
 export default TopBar;

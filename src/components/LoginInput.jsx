@@ -3,6 +3,7 @@ import FieldInput from './FieldInput';
 import useInput from '../hooks/useInput';
 import { Link } from 'react-router-dom';
 import LoadingButton from './LoadingButton';
+import PropTypes from 'prop-types';
 
 function LoginInput({ isLoading, handleLogin }) {
   const [email, setEmail] = useInput('');
@@ -47,5 +48,12 @@ function LoginInput({ isLoading, handleLogin }) {
     </div>
   );
 }
+
+LoginInput.propTypes = {
+  /** Handle visibility loading indicator */
+  isLoading: PropTypes.bool.isRequired,
+  /** The function for login */
+  handleLogin: PropTypes.func.isRequired
+};
 
 export default LoginInput;

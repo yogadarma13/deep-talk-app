@@ -4,6 +4,7 @@ import ThreadItem from '../components/ThreadItem';
 export default {
   title: 'ThreadItem',
   component: ThreadItem,
+  tags: ['autodocs'],
   args: {
     handleUpVote: fn(),
     handleDownVote: fn(),

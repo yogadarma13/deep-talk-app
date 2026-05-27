@@ -4,6 +4,7 @@ import ActionItems from '../components/ActionItems';
 export default {
   title: 'ActionItems',
   component: ActionItems,
+  tags: ['autodocs'],
   args: {
     upVoteHandler: fn(),
     downVoteHandler: fn(),

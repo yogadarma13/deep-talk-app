@@ -4,6 +4,7 @@ import CommentInput from '../components/CommentInput';
 export default {
   title: 'CommentInput',
   component: CommentInput,
+  tags: ['autodocs'],
   args: {
     handleAddComment: fn(),
   },
