@@ -20,7 +20,7 @@ function AddThreadInput({ isLoading, handleAddThread }) {
           <label>Title</label>
 
           <input
-            data-testId="title"
+            data-testid="title"
             type="text"
             placeholder="Enter thread title"
             value={title}
@@ -31,7 +31,7 @@ function AddThreadInput({ isLoading, handleAddThread }) {
           <label>Category</label>
 
           <input
-            data-testId="category"
+            data-testid="category"
             type="text"
             placeholder="Enter thread category"
             value={category}
@@ -42,7 +42,7 @@ function AddThreadInput({ isLoading, handleAddThread }) {
           <label>Description</label>
 
           <div
-            data-testId="body"
+            data-testid="body"
             className="add-thread-input-group-body"
             data-placeholder="Write your thread description..."
             contentEditable
@@ -53,7 +53,7 @@ function AddThreadInput({ isLoading, handleAddThread }) {
           <LoadingButton />
         ) : (
           <button
-            data-testId="add-thread-button"
+            data-testid="add-thread-button"
             className="add-thread-submit-button"
             onClick={() => handleAddThread({ title, category, body })}
           >
