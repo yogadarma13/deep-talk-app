@@ -58,7 +58,7 @@ describe('asyncRegisterUser thunk', () => {
     expect(dispatch).toHaveBeenCalledWith(showLoading());
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
     expect(window.alert).toHaveBeenCalledWith(
-      'Successfully created an account',
+      'Sukses',
     );
   });
 
