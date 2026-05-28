@@ -34,7 +34,7 @@ function LoginInput({ isLoading, handleLogin }) {
           <LoadingButton />
         ) : (
           <button
-            data-testId="login-button"
+            data-testid="login-button"
             className="login-button"
             onClick={() => handleLogin({ email, password })}
           >

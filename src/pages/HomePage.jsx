@@ -16,9 +16,7 @@ function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
-    if (threads.length === 0) {
-      dispatch(asyncPopulateThreadsAndUsers());
-    }
+    dispatch(asyncPopulateThreadsAndUsers());
   }, [dispatch]);
 
   const filteredThreads = useMemo(() => {
